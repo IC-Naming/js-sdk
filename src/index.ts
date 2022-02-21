@@ -1,11 +1,7 @@
-import { resolver } from "./canisters/resolver";
+import { IcNamingClientBase } from "./base";
 
-export const call_GetRecordValue = () => {
-  resolver.get_record_value("test");
-};
-
-export const VARIABLE_TEST = 1;
-
-export const FUNCTION_TEST = (argument: string) => {
-  return argument;
-};
+export class IcNamingClient extends IcNamingClientBase {
+  hello() {
+    this._favorites_actor.add_favorite("hello");
+  }
+}
