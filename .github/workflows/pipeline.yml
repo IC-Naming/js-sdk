@@ -1,0 +1,35 @@
+name: Pipeline
+
+on:
+  push:
+    branches:
+      - main
+    tags-ignore:
+      - "**"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  echo:
+    strategy:
+      matrix:
+        node-version: [14, 16]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout [main]
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v2
+        name: Setup NodeJS
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+
+      - run: yarn install
+      - run: yarn test
+      - run: yarn build
+      - run: ls ./dist
