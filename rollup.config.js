@@ -17,7 +17,7 @@ const cjs = {
     format: "cjs",
     esModule: true,
   },
-  plugins: [resolve(), typescript()],
+  plugins: [commonjs(), resolve(), typescript()],
 };
 
 const umd = {

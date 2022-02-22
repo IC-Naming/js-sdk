@@ -7,10 +7,10 @@ import {
 import { IDL } from "@dfinity/candid";
 import { Principal } from "@dfinity/principal";
 
-import FavoritesDid from "./canisters/favorites/favorites.did";
-import RegistrarDid from "./canisters/registrar/registrar.did";
-import RegistryDid from "./canisters/registry/registry.did";
-import ResolverDid from "./canisters/resolver/resolver.did";
+import * as FavoritesDid from "./canisters/favorites/favorites.did";
+import * as RegistrarDid from "./canisters/registrar/registrar.did";
+import * as RegistryDid from "./canisters/registry/registry.did";
+import * as ResolverDid from "./canisters/resolver/resolver.did";
 
 export interface IcNamingClientInitOptions {
   canisterId: string | Principal;
