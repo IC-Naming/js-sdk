@@ -25,7 +25,7 @@ const umd = {
   output: {
     file: pkg.browser,
     format: "umd",
-    name: "IcNaming.JS_SDK",
+    name: "IcNaming.Client",
   },
   plugins: [commonjs(), resolve(), typescript()],
 };
