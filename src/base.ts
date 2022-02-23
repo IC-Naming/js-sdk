@@ -14,7 +14,7 @@ import * as ResolverDid from "./canisters/resolver/resolver.did";
 
 export interface IcNamingClientInitOptions {
   canisterId: string | Principal;
-  fetchRootKey: boolean; // Fetch root key for certificate validation during development
+  fetchRootKey: boolean;
   defaultHttpAgentOptions?: HttpAgentOptions;
 }
 
@@ -22,10 +22,10 @@ export class IcNamingClientBase {
   private _options: IcNamingClientInitOptions;
   private _httpAgent: HttpAgent;
 
-  protected _favorites_actor;
-  protected _registrar_actor;
-  protected _registry_actor;
-  protected _resolver_actor;
+  protected favorites;
+  protected registrar;
+  protected registry;
+  protected resolver;
 
   constructor(options: IcNamingClientInitOptions) {
     this._options = options;
@@ -34,16 +34,16 @@ export class IcNamingClientBase {
 
     this._init_actors_before();
 
-    this._favorites_actor = this._createActor<FavoritesDid._SERVICE>(
+    this.favorites = this._createActor<FavoritesDid._SERVICE>(
       toDidModuleType(FavoritesDid).idlFactory
     );
-    this._registrar_actor = this._createActor<RegistrarDid._SERVICE>(
+    this.registrar = this._createActor<RegistrarDid._SERVICE>(
       toDidModuleType(RegistrarDid).idlFactory
     );
-    this._registry_actor = this._createActor<RegistryDid._SERVICE>(
+    this.registry = this._createActor<RegistryDid._SERVICE>(
       toDidModuleType(RegistryDid).idlFactory
     );
-    this._resolver_actor = this._createActor<ResolverDid._SERVICE>(
+    this.resolver = this._createActor<ResolverDid._SERVICE>(
       toDidModuleType(ResolverDid).idlFactory
     );
   }
@@ -75,30 +75,6 @@ export class IcNamingClientBase {
   }
 }
 
-/* Utils */
-
 const toDidModuleType = <T>(module: T) => {
   return module as T & { idlFactory: IDL.InterfaceFactory };
 };
-
-export const throwableCanisterResult = <ResultType extends { Err?: boolean }>(
-  result: ResultType
-) => {
-  if (result.Err) {
-    throw new IcNamingCanisterError(result);
-  }
-};
-
-/* Custom Errors */
-
-export class IcNamingError extends Error {}
-// More error type eg: `export class IcNamingInternalError extends IcNamingError {}`
-
-export class IcNamingCanisterError extends IcNamingError {
-  theIcNamingCanisterErrorResult: unknown;
-
-  constructor(rawResult: unknown) {
-    super("IcNamingCanisterError"); // TODO: better message info
-    this.theIcNamingCanisterErrorResult = rawResult;
-  }
-}
