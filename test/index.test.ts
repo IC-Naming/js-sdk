@@ -1,5 +1,5 @@
-describe("test", () => {
-  it("test", () => {
+describe("Jest", () => {
+  it("should sum", () => {
     expect(1 + 1).toBe(2);
   });
 });
