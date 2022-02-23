@@ -286,10 +286,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@dfinity/agent@^0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@dfinity/agent/-/agent-0.10.2.tgz#1c591e9f5d0b3acaeea767d402f53c8732f754ac"
-  integrity sha512-ipzw+UYSUJWgwq5IM8PwHLXlfViFJWX+ZPvMD4vclDjwxiLf/nDZNk2sgLfYAi/2o2MpG6wUTUYriX/gmYrbkg==
+"@dfinity/agent@^0.10.3":
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/@dfinity/agent/-/agent-0.10.3.tgz#488939eb5bc1562b37705efe5f7c6caa7b82513d"
+  integrity sha512-trbTm8/o7N0yoIsNIMeKfbfKsqphDQ0Ql5cL5VdIUb57ClFKQg7VrQJoFXn9CYuhgqC7u5EnkNhlfLc2SH1Y3A==
   dependencies:
     base64-arraybuffer "^0.2.0"
     bignumber.js "^9.0.0"
@@ -297,15 +297,15 @@
     js-sha256 "0.9.0"
     simple-cbor "^0.4.1"
 
-"@dfinity/candid@^0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@dfinity/candid/-/candid-0.10.2.tgz#545692c4f9a954b2133436049a707434d5c6c7c9"
-  integrity sha512-vHRw6G5N6Nj8PlGl+Dx8pRGNCA/OQJ5v5ktj+t4ZL/4UIaebDZYzRZyrtBC0Vs1iG9BA5l48b7ByMH26UKLC6w==
+"@dfinity/candid@^0.10.3":
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/@dfinity/candid/-/candid-0.10.3.tgz#0c93b7ad9a1f7250f01c11a8f786443319d8e18f"
+  integrity sha512-+zhJGIlhPLsxh6ft2HPwKz6TQzkBIZHkOCgyrZ9ajvBWq1riyCEVlIgISlIiGfNcCWT4UjWZfe8s/2YIR2VqrQ==
 
-"@dfinity/principal@^0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@dfinity/principal/-/principal-0.10.2.tgz#26123490bac2de6987d20715eda5efb8812a68d5"
-  integrity sha512-CueU9ByIG2ifGDN8YnTPKbLJ6+ZDkoOLVmelaIcueTwqvHMIIvWNme76GwjbcbZ6/XgFd+I7cIKPMX0qQgbGCw==
+"@dfinity/principal@^0.10.3":
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/@dfinity/principal/-/principal-0.10.3.tgz#31b4d9e626dad7a5e0bc0ef07c40f996eb6218b8"
+  integrity sha512-32xwA+uSr3ieus55OG70b+wctiWxUJ5e/3JcmXgvC4o8TredAnfbQFuTqRi4AO+dh230hHqeRsKLoCvTdDRBXg==
 
 "@hutson/parse-repository-url@^3.0.0":
   version "3.0.2"
