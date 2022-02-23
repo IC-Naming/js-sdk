@@ -30,6 +30,7 @@ jobs:
           cache: "yarn"
 
       - run: yarn install
+      - run: yarn type
       - run: yarn test
       - run: yarn build
       - run: ls ./dist
