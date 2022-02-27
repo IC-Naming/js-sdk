@@ -28,7 +28,7 @@ Normal:
 
 ```js
 const client = new IcNamingClient({
-  net: "MAINNET",
+  net: "MAINNET", // MAINNET | TICP
   mode: "local", // local | production
 });
 
