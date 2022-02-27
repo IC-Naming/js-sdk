@@ -12,7 +12,12 @@ import * as FavoritesDid from "../canisters/favorites/favorites.did";
 import * as RegistrarDid from "../canisters/registrar/registrar.did";
 import * as RegistryDid from "../canisters/registry/registry.did";
 import * as ResolverDid from "../canisters/resolver/resolver.did";
-import { MAINNET_CANISTER_ID_GROUP, TICP_CANISTER_ID_GROUP } from "./config";
+import {
+  IC_LOCAL_HOST,
+  IC_PUBLIC_HOST,
+  MAINNET_CANISTER_ID_GROUP,
+  TICP_CANISTER_ID_GROUP,
+} from "./config";
 
 export interface IcNamingClientInitOptions {
   net: "MAINNET" | "TICP";
@@ -61,8 +66,8 @@ export class IcNamingClientBase {
 
   private _initHttpAgent() {
     return new HttpAgent({
+      host: this._options.mode === "local" ? IC_LOCAL_HOST : IC_PUBLIC_HOST,
       ...this._options.httpAgentOptions,
-      // TODO: mix special options
     });
   }
 

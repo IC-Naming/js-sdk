@@ -1,3 +1,6 @@
+export const IC_PUBLIC_HOST = "https://ic0.app";
+export const IC_LOCAL_HOST = "http://127.0.0.1:8000";
+
 interface NetCanisterIdMapping {
   registrar: string;
   registry: string;
