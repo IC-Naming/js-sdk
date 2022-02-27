@@ -6,7 +6,6 @@ import {
   HttpAgentOptions,
 } from "@dfinity/agent";
 import { IDL } from "@dfinity/candid";
-import { Principal } from "@dfinity/principal";
 
 import * as FavoritesDid from "../canisters/favorites/favorites.did";
 import * as RegistrarDid from "../canisters/registrar/registrar.did";
