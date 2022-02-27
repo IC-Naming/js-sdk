@@ -11,5 +11,8 @@ export const throwable = async <T>(fn: () => Promise<T>) => {
     throw new IcNamingCanisterError(result);
   }
 
-  return result as unknown as Extract<T, { Ok: unknown }>;
+  return (result as unknown as { Ok: unknown }).Ok as unknown as Extract<
+    T,
+    { Ok: unknown }
+  >["Ok"];
 };

@@ -10,8 +10,8 @@ describe("Internal utils", () => {
       ).rejects.toThrowError("IcNamingCanisterError"));
 
     it("should not throw error", () =>
-      expect(throwable(() => Promise.resolve({ Ok: true }))).resolves.toEqual({
-        Ok: true,
-      }));
+      expect(throwable(() => Promise.resolve({ Ok: true }))).resolves.toEqual(
+        true
+      ));
   });
 });
