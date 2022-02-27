@@ -1,5 +1,6 @@
 import {
   Actor,
+  ActorConfig,
   ActorSubclass,
   HttpAgent,
   HttpAgentOptions,
@@ -11,9 +12,10 @@ import * as FavoritesDid from "../canisters/favorites/favorites.did";
 import * as RegistrarDid from "../canisters/registrar/registrar.did";
 import * as RegistryDid from "../canisters/registry/registry.did";
 import * as ResolverDid from "../canisters/resolver/resolver.did";
+import { MAINNET_CANISTER_ID_GROUP, TICP_CANISTER_ID_GROUP } from "./config";
 
 export interface IcNamingClientInitOptions {
-  canisterId: string | Principal;
+  net: "MAINNET" | "TICP";
   fetchRootKey: boolean;
   defaultHttpAgentOptions?: HttpAgentOptions;
 }
@@ -34,17 +36,26 @@ export class IcNamingClientBase {
 
     this._init_actors_before();
 
+    const canisterIdMapping =
+      options.net === "MAINNET"
+        ? MAINNET_CANISTER_ID_GROUP
+        : TICP_CANISTER_ID_GROUP;
+
     this.favorites = this._createActor<FavoritesDid._SERVICE>(
-      toDidModuleType(FavoritesDid).idlFactory
+      toDidModuleType(FavoritesDid).idlFactory,
+      canisterIdMapping.favorites
     );
     this.registrar = this._createActor<RegistrarDid._SERVICE>(
-      toDidModuleType(RegistrarDid).idlFactory
+      toDidModuleType(RegistrarDid).idlFactory,
+      canisterIdMapping.registrar
     );
     this.registry = this._createActor<RegistryDid._SERVICE>(
-      toDidModuleType(RegistryDid).idlFactory
+      toDidModuleType(RegistryDid).idlFactory,
+      canisterIdMapping.registry
     );
     this.resolver = this._createActor<ResolverDid._SERVICE>(
-      toDidModuleType(ResolverDid).idlFactory
+      toDidModuleType(ResolverDid).idlFactory,
+      canisterIdMapping.resolver
     );
   }
 
@@ -67,10 +78,13 @@ export class IcNamingClientBase {
     }
   }
 
-  private _createActor<ServiceType>(factory: IDL.InterfaceFactory) {
+  private _createActor<ServiceType>(
+    factory: IDL.InterfaceFactory,
+    canisterId: ActorConfig["canisterId"]
+  ) {
     return Actor.createActor(factory, {
       agent: this._httpAgent,
-      canisterId: this._options.canisterId,
+      canisterId,
     }) as ActorSubclass<ServiceType>;
   }
 }

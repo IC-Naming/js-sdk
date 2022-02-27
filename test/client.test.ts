@@ -5,7 +5,7 @@ jest.mock("../src/internal/base");
 describe("IcNamingClient", () => {
   it("should naming available", async () => {
     const client = new IcNamingClient({
-      canisterId: "ID",
+      net: "MAINNET",
       fetchRootKey: false,
     });
 
