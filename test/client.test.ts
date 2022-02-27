@@ -6,7 +6,7 @@ describe("IcNamingClient", () => {
   it("should naming available", async () => {
     const client = new IcNamingClient({
       net: "MAINNET",
-      fetchRootKey: false,
+      mode: "local",
     });
 
     client["registrar"] = { available: () => {} } as any;

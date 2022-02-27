@@ -16,7 +16,7 @@ import { MAINNET_CANISTER_ID_GROUP, TICP_CANISTER_ID_GROUP } from "./config";
 
 export interface IcNamingClientInitOptions {
   net: "MAINNET" | "TICP";
-  fetchRootKey: boolean;
+  mode: "production" | "local";
   defaultHttpAgentOptions?: HttpAgentOptions;
 }
 
@@ -67,7 +67,7 @@ export class IcNamingClientBase {
   }
 
   private _init_actors_before() {
-    if (this._options.fetchRootKey) {
+    if (this._options.mode === "local") {
       this._httpAgent.fetchRootKey().catch((err) => {
         console.warn(
           "Unable to fetch root key. Check to ensure that your local replica is running"
