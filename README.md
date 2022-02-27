@@ -5,12 +5,14 @@
 Using npm:
 
 ```sh
+npm install @dfinity/{agent,candid,principal} # dfinity needs
 npm install @ic-naming/client
 ```
 
 Using yarn:
 
 ```sh
+yarn add @dfinity/{agent,candid,principal} # dfinity needs
 yarn add @ic-naming/client
 ```
 
