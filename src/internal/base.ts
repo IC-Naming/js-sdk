@@ -17,7 +17,7 @@ import { MAINNET_CANISTER_ID_GROUP, TICP_CANISTER_ID_GROUP } from "./config";
 export interface IcNamingClientInitOptions {
   net: "MAINNET" | "TICP";
   mode: "production" | "local";
-  defaultHttpAgentOptions?: HttpAgentOptions;
+  httpAgentOptions?: HttpAgentOptions;
 }
 
 export class IcNamingClientBase {
@@ -61,7 +61,7 @@ export class IcNamingClientBase {
 
   private _initHttpAgent() {
     return new HttpAgent({
-      ...this._options.defaultHttpAgentOptions,
+      ...this._options.httpAgentOptions,
       // TODO: mix special options
     });
   }
