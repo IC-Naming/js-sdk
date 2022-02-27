@@ -24,11 +24,48 @@ Using unpkg CDN. Access through `(window or global).IcNaming.Client`:
 
 ## Example
 
-TODO
+Normal:
+
+```js
+const client = new IcNamingClient({
+  net: "MAINNET",
+  mode: "local", // local | production
+});
+
+client.isAvailableNaming("hello.world").then((isAvailable) => {
+  console.log(isAvailable ? "Available!" : "Not Available!");
+});
+```
+
+Special host and identity:
+
+```js
+const client = new IcNamingClient({
+  net: "MAINNET",
+  mode: "local",
+  httpAgent: {
+    host: "https://ic0.app", // default by mode
+    identity: {
+      identity: {
+        transformRequest: () => {
+          /* ... */
+        },
+        getPrincipal: () => {
+          /* ... */
+        },
+      },
+    },
+  },
+});
+```
+
+**Repo example TODO**
 
 ## Client API
 
-TODO
+[client.ts](./src/client.ts)
+
+**Document TODO**
 
 ## Contribute
 
