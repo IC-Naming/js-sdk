@@ -5,7 +5,11 @@ export class IcNamingCanisterError extends IcNamingError {
   theIcNamingCanisterErrorResult: unknown;
 
   constructor(rawResult: unknown) {
-    super("IcNamingCanisterError"); // TODO: better message info
+    super(
+      `IcNamingCanisterError: ${
+        (rawResult as { Err?: { message?: string } })?.Err?.message || "unknown"
+      }`
+    );
     this.theIcNamingCanisterErrorResult = rawResult;
   }
 }
