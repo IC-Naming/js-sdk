@@ -1,6 +1,7 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
+import dts from "rollup-plugin-dts";
 import pkg from "./package.json";
 
 const esm = {
@@ -30,4 +31,13 @@ const umd = {
   plugins: [commonjs(), resolve(), typescript()],
 };
 
-export default [esm, cjs, umd];
+const declaration = {
+  input: "src/index.ts",
+  output: {
+    file: pkg.typings,
+    format: "es",
+  },
+  plugins: [dts()],
+};
+
+export default [esm, cjs, umd, declaration];
