@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/IC-Naming/js-sdk/compare/v0.2.2...v0.2.3) (2022-03-13)
+
+
+### Features
+
+* output typings ([8695a03](https://github.com/IC-Naming/js-sdk/commit/8695a03bd0400686743922185ec7a90fba34a73d))
+
 ### [0.2.2](https://github.com/IC-Naming/js-sdk/compare/v0.2.0...v0.2.2) (2022-02-27)
 
 ## [0.2.0](https://github.com/IC-Naming/js-sdk/compare/v0.0.1...v0.2.0) (2022-02-27)
