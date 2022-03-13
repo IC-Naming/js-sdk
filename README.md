@@ -27,6 +27,8 @@ Using unpkg CDN. Access through `(window or global).IcNaming.Client`:
 Normal:
 
 ```js
+import { IcNamingClient } from '@ic-naming/client';
+
 const client = new IcNamingClient({
   net: "MAINNET", // MAINNET | TICP
   mode: "local", // local | production
@@ -40,6 +42,8 @@ client.isAvailableNaming("hello.world").then((isAvailable) => {
 Special host and identity:
 
 ```js
+import { IcNamingClient } from '@ic-naming/client';
+
 const client = new IcNamingClient({
   net: "MAINNET",
   mode: "local",
