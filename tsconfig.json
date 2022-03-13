@@ -9,6 +9,7 @@
     "baseUrl": ".",
     "moduleResolution": "Node",
     "esModuleInterop": true,
-    "allowJs": true
+    "allowJs": true,
+    "skipLibCheck": true
   }
 }

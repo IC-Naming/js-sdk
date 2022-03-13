@@ -15,12 +15,12 @@ Using yarn:
 yarn add @dfinity/{agent,candid,principal} # dfinity needs
 yarn add @ic-naming/client
 ```
-
+<!-- 
 Using unpkg CDN. Access through `(window or global).IcNaming.Client`:
 
 ```html
 <script src="https://unpkg.com/browse/@ic-naming/client/dist/index-umd.js"></script>
-```
+``` -->
 
 ## Example
 
