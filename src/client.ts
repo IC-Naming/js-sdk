@@ -3,6 +3,10 @@ import { IcNamingClientBase } from "./internal/base";
 import { throwable } from "./internal/utils";
 
 export class IcNamingClient extends IcNamingClientBase {
+  constructor(options: IcNamingClientInitOptions) {
+    super(options);
+  }
+
   async isAvailableNaming(naming: string) {
     return await throwable(() => this.registrar.available(naming));
   }
