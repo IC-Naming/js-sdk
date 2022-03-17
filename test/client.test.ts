@@ -227,4 +227,35 @@ describe("IcNamingClient", () => {
     });
     expect(client["registry"].get_details).toBeCalledTimes(1);
   });
+
+  it("should return prices", async () => {
+    const client = new IcNamingClient({
+      net: "MAINNET",
+      mode: "local",
+    });
+
+    client["registrar"] = { get_price_table: () => {} } as any;
+
+    jest.spyOn(client["registrar"], "get_price_table").mockResolvedValue({
+      Ok: {
+        icp_xdr_conversion_rate: BigInt(1),
+        items: [
+          {
+            len: 8,
+            price_in_icp_e8s: BigInt(1),
+            price_in_xdr_permyriad: BigInt(1),
+          },
+        ],
+      },
+    });
+
+    await expect(client.getRegistrarPrices()).resolves.toMatchObject([
+      {
+        len: 8,
+        price_in_icp_e8s: BigInt(1),
+        price_in_xdr_permyriad: BigInt(1),
+      },
+    ]);
+    expect(client["registrar"].get_price_table).toBeCalledTimes(1);
+  });
 });
