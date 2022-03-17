@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-0](https://github.com/IC-Naming/js-sdk/compare/v0.2.6...v0.3.0-0) (2022-03-17)
+
+
+### Features
+
+* add `getRegistrarPrices` ([2ceddcc](https://github.com/IC-Naming/js-sdk/commit/2ceddcce86349ecc34a20e37d5fb04445fc3c288))
+
 ### [0.2.6](https://github.com/IC-Naming/js-sdk/compare/v0.2.5...v0.2.6) (2022-03-13)
 
 ### [0.2.5](https://github.com/IC-Naming/js-sdk/compare/v0.2.4...v0.2.5) (2022-03-13)
