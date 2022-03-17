@@ -258,4 +258,23 @@ describe("IcNamingClient", () => {
     ]);
     expect(client["registrar"].get_price_table).toBeCalledTimes(1);
   });
+
+  it("should return favorites", async () => {
+    const client = new IcNamingClient({
+      net: "MAINNET",
+      mode: "local",
+    });
+
+    client["favorites"] = { get_favorites: () => {} } as any;
+
+    jest.spyOn(client["favorites"], "get_favorites").mockResolvedValue({
+      Ok: ["hello", "world"],
+    });
+
+    await expect(client.getFavoriteNames()).resolves.toMatchObject([
+      "hello",
+      "world",
+    ]);
+    expect(client["favorites"].get_favorites).toBeCalledTimes(1);
+  });
 });
