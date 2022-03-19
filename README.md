@@ -15,7 +15,8 @@ Using yarn:
 yarn add @dfinity/{agent,candid,principal} # dfinity needs
 yarn add @ic-naming/client
 ```
-<!-- 
+
+<!--
 Using unpkg CDN. Access through `(window or global).IcNaming.Client`:
 
 ```html
@@ -27,7 +28,7 @@ Using unpkg CDN. Access through `(window or global).IcNaming.Client`:
 Normal:
 
 ```js
-import { IcNamingClient } from '@ic-naming/client';
+import { IcNamingClient } from "@ic-naming/client";
 
 const client = new IcNamingClient({
   net: "MAINNET", // MAINNET | TICP
@@ -42,7 +43,7 @@ client.isAvailableNaming("hello.world").then((isAvailable) => {
 Special host and identity:
 
 ```js
-import { IcNamingClient } from '@ic-naming/client';
+import { IcNamingClient } from "@ic-naming/client";
 
 const client = new IcNamingClient({
   net: "MAINNET",
@@ -63,7 +64,9 @@ const client = new IcNamingClient({
 });
 ```
 
-**Repo example TODO**
+### More example in repo
+
+- [React App](./examples/react-app/) - A "React App" for search naming
 
 ## Client API
 
