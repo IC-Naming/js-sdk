@@ -1,5 +1,9 @@
 import { Principal } from "@dfinity/principal";
-import { IcNamingClient } from "../src";
+import {
+  IcNamingClient,
+  NameRecordsCacheStore,
+  NameRecordsValue,
+} from "../src";
 
 jest.mock("../src/internal/base");
 
@@ -200,6 +204,88 @@ describe("IcNamingClient", () => {
       ["key3", "value3"],
     ]);
     expect(client["resolver"].get_record_value).toBeCalledTimes(1);
+  });
+
+  it("should return records of name with cache store", async () => {
+    const simpleMemoryNameRecordsCacheStore = {
+      map: {} as Record<string, NameRecordsValue>,
+      async getRecordsByName(name: string) {
+        return this.map[name];
+      },
+      async setRecordsByName(name: string, value: NameRecordsValue) {
+        this.map[name] = value;
+      },
+    };
+    const spyStoreGet = jest.spyOn(
+      simpleMemoryNameRecordsCacheStore,
+      "getRecordsByName"
+    );
+    const spyStoreSet = jest.spyOn(
+      simpleMemoryNameRecordsCacheStore,
+      "setRecordsByName"
+    );
+
+    const client = new IcNamingClient({
+      net: "MAINNET",
+      mode: "local",
+      nameRecordsCacheStore: simpleMemoryNameRecordsCacheStore,
+    });
+
+    client["resolver"] = { get_record_value: () => {} } as any;
+    client["dispatchNameRecordsCache"] = jest
+      .fn()
+      .mockImplementation(async (fn) => {
+        await fn(simpleMemoryNameRecordsCacheStore);
+      });
+    client["getRegistryOfName"] = jest.fn().mockResolvedValue({
+      ttl: BigInt(600),
+      resolver: dummyPrincipal,
+      owner: dummyPrincipal,
+      name: "name",
+    });
+
+    jest.spyOn(client["resolver"], "get_record_value").mockResolvedValue({
+      Ok: [
+        ["key1", "value1"],
+        ["key2", "value2"],
+        ["key3", "value3"],
+      ],
+    });
+
+    await expect(client.getRecordsOfName("name")).resolves.toMatchObject([
+      ["key1", "value1"],
+      ["key2", "value2"],
+      ["key3", "value3"],
+    ]);
+    expect(client["dispatchNameRecordsCache"]).toHaveBeenCalledTimes(2);
+    expect(client["resolver"].get_record_value).toBeCalledTimes(1);
+    expect(client["getRegistryOfName"]).toBeCalledTimes(1);
+    expect(spyStoreGet).toBeCalledTimes(2);
+    expect(spyStoreSet).toBeCalledTimes(2);
+
+    await expect(client.getRecordsOfName("name")).resolves.toMatchObject([
+      ["key1", "value1"],
+      ["key2", "value2"],
+      ["key3", "value3"],
+    ]);
+    expect(client["dispatchNameRecordsCache"]).toHaveBeenCalledTimes(2 + 1);
+    expect(client["resolver"].get_record_value).toBeCalledTimes(1 + 0);
+    expect(client["getRegistryOfName"]).toBeCalledTimes(1 + 0);
+    expect(spyStoreGet).toBeCalledTimes(2 + 1);
+    expect(spyStoreSet).toBeCalledTimes(2 + 0);
+
+    simpleMemoryNameRecordsCacheStore.map["name"].expired_at = Date.now();
+
+    await expect(client.getRecordsOfName("name")).resolves.toMatchObject([
+      ["key1", "value1"],
+      ["key2", "value2"],
+      ["key3", "value3"],
+    ]);
+    expect(client["dispatchNameRecordsCache"]).toHaveBeenCalledTimes(2 + 1 + 2);
+    expect(client["resolver"].get_record_value).toBeCalledTimes(1 + 0 + 1);
+    expect(client["getRegistryOfName"]).toBeCalledTimes(1 + 0 + 1);
+    expect(spyStoreGet).toBeCalledTimes(2 + 1 + 2);
+    expect(spyStoreSet).toBeCalledTimes(2 + 0 + 2);
   });
 
   it("should return registry of name", async () => {

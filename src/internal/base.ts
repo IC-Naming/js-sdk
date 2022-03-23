@@ -17,11 +17,17 @@ import {
   MAINNET_CANISTER_ID_GROUP,
   TICP_CANISTER_ID_GROUP,
 } from "./config";
+import { NameRecordsCacheStore } from "./interfaces";
 
 export interface IcNamingClientInitOptions {
   net: "MAINNET" | "TICP";
   mode: "production" | "local";
   httpAgentOptions?: HttpAgentOptions;
+  nameRecordsCacheStore?: NameRecordsCacheStore;
+}
+
+export interface InternalStores {
+  nameRecordsCacheStore?: NameRecordsCacheStore;
 }
 
 export class IcNamingClientBase {
@@ -90,6 +96,14 @@ export class IcNamingClientBase {
       agent: this._httpAgent,
       canisterId,
     }) as ActorSubclass<ServiceType>;
+  }
+
+  public async dispatchNameRecordsCache(
+    fn: (store: NameRecordsCacheStore) => Promise<void>
+  ) {
+    if (this._options.nameRecordsCacheStore) {
+      await fn(this._options.nameRecordsCacheStore);
+    }
   }
 }
 

@@ -97,8 +97,50 @@ export class IcNamingClient extends IcNamingClientBase {
 
   // --- Resolver ---
 
-  async getRecordsOfName(name: string) {
-    return await throwable(() => this.resolver.get_record_value(name));
+  async getRecordsOfName(name: string): Promise<Array<[string, string]>> {
+    let cachedRecords: Array<[string, string]> | undefined;
+
+    await this.dispatchNameRecordsCache(async (store) => {
+      const target = await store.getRecordsByName(name);
+
+      if (target) {
+        if (Date.now() >= target.expired_at) {
+          const { ttl } = await this.getRegistryOfName(name);
+
+          await store.setRecordsByName(name, {
+            name,
+            expired_at: new Date(Date.now() + Number(ttl) * 1000).getTime(),
+          });
+        } else {
+          if (target.records) {
+            cachedRecords = target.records.map((i) => [i.key, i.value]);
+          }
+        }
+      } else {
+        const { ttl } = await this.getRegistryOfName(name);
+        await store.setRecordsByName(name, {
+          name,
+          expired_at: new Date(Date.now() + Number(ttl) * 1000).getTime(),
+        });
+      }
+    });
+
+    if (cachedRecords) return cachedRecords;
+
+    const result = await throwable(() => this.resolver.get_record_value(name));
+
+    await this.dispatchNameRecordsCache(async (store) => {
+      const target = await store.getRecordsByName(name);
+
+      if (target) {
+        await store.setRecordsByName(name, {
+          ...target,
+          records: result.map(([key, value]) => ({ key, value })),
+        });
+      }
+    });
+
+    return result;
   }
 
   // --- Favorites ---
