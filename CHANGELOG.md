@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-1](https://github.com/IC-Naming/js-sdk/compare/v0.3.0-0...v0.3.0-1) (2022-03-23)
+
+
+### Features
+
+* name records cache interface ([6a14ab6](https://github.com/IC-Naming/js-sdk/commit/6a14ab6102c79de383591366b854acb26baf26bd))
+
 ## [0.3.0-0](https://github.com/IC-Naming/js-sdk/compare/v0.2.6...v0.3.0-0) (2022-03-17)
 
 
