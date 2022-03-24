@@ -98,7 +98,7 @@ export class IcNamingClientBase {
     }) as ActorSubclass<ServiceType>;
   }
 
-  public async dispatchNameRecordsCache(
+  protected async dispatchNameRecordsCache(
     fn: (store: NameRecordsCacheStore) => Promise<void>
   ) {
     if (this._options.nameRecordsCacheStore) {
