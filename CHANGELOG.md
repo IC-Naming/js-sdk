@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-2](https://github.com/IC-Naming/js-sdk/compare/v0.3.0-1...v0.3.0-2) (2022-03-24)
+
+
+### Features
+
+* option `enableTTL` ([45b71c5](https://github.com/IC-Naming/js-sdk/commit/45b71c52fcfeb16e963de960635e7f6b5079af19))
+
 ## [0.3.0-1](https://github.com/IC-Naming/js-sdk/compare/v0.3.0-0...v0.3.0-1) (2022-03-23)
 
 
