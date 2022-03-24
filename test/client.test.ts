@@ -1,6 +1,7 @@
 import { Principal } from "@dfinity/principal";
 import {
   IcNamingClient,
+  InMemoryNameRecordsCacheStore,
   NameRecordsCacheStore,
   NameRecordsValue,
 } from "../src";
@@ -207,35 +208,22 @@ describe("IcNamingClient", () => {
   });
 
   it("should return records of name with cache store", async () => {
-    const simpleMemoryNameRecordsCacheStore = {
-      map: {} as Record<string, NameRecordsValue>,
-      async getRecordsByName(name: string) {
-        return this.map[name];
-      },
-      async setRecordsByName(name: string, value: NameRecordsValue) {
-        this.map[name] = value;
-      },
-    };
-    const spyStoreGet = jest.spyOn(
-      simpleMemoryNameRecordsCacheStore,
-      "getRecordsByName"
-    );
-    const spyStoreSet = jest.spyOn(
-      simpleMemoryNameRecordsCacheStore,
-      "setRecordsByName"
-    );
+    const inMemoryStore = new InMemoryNameRecordsCacheStore();
+
+    const spyStoreGet = jest.spyOn(inMemoryStore, "getRecordsByName");
+    const spyStoreSet = jest.spyOn(inMemoryStore, "setRecordsByName");
 
     const client = new IcNamingClient({
       net: "MAINNET",
       mode: "local",
-      nameRecordsCacheStore: simpleMemoryNameRecordsCacheStore,
+      nameRecordsCacheStore: inMemoryStore,
     });
 
     client["resolver"] = { get_record_value: () => {} } as any;
     client["dispatchNameRecordsCache"] = jest
       .fn()
       .mockImplementation(async (fn) => {
-        await fn(simpleMemoryNameRecordsCacheStore);
+        await fn(inMemoryStore);
       });
     client["getRegistryOfName"] = jest.fn().mockResolvedValue({
       ttl: BigInt(600),
@@ -274,7 +262,7 @@ describe("IcNamingClient", () => {
     expect(spyStoreGet).toBeCalledTimes(2 + 1);
     expect(spyStoreSet).toBeCalledTimes(2 + 0);
 
-    simpleMemoryNameRecordsCacheStore.map["name"].expired_at = Date.now();
+    inMemoryStore.map["name"].expired_at = Date.now();
 
     await expect(client.getRecordsOfName("name")).resolves.toMatchObject([
       ["key1", "value1"],

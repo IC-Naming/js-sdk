@@ -17,7 +17,7 @@ import {
   MAINNET_CANISTER_ID_GROUP,
   TICP_CANISTER_ID_GROUP,
 } from "./config";
-import { NameRecordsCacheStore } from "./interfaces";
+import { NameRecordsCacheStore } from "./cache";
 
 export interface IcNamingClientInitOptions {
   net: "MAINNET" | "TICP";
