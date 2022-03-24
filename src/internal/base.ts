@@ -17,12 +17,13 @@ import {
   MAINNET_CANISTER_ID_GROUP,
   TICP_CANISTER_ID_GROUP,
 } from "./config";
-import { NameRecordsCacheStore } from "./cache";
+import { InMemoryNameRecordsCacheStore, NameRecordsCacheStore } from "./cache";
 
 export interface IcNamingClientInitOptions {
   net: "MAINNET" | "TICP";
   mode: "production" | "local";
   httpAgentOptions?: HttpAgentOptions;
+  enableTTL?: boolean;
   nameRecordsCacheStore?: NameRecordsCacheStore;
 }
 
@@ -34,6 +35,9 @@ export class IcNamingClientBase {
   private _options: IcNamingClientInitOptions;
   private _httpAgent: HttpAgent;
 
+  protected enableTTL: boolean;
+  protected nameRecordsCacheStore?: NameRecordsCacheStore;
+
   protected favorites;
   protected registrar;
   protected registry;
@@ -43,6 +47,12 @@ export class IcNamingClientBase {
     this._options = options;
 
     this._httpAgent = this._initHttpAgent();
+
+    this.enableTTL = options.enableTTL ?? false;
+
+    this.nameRecordsCacheStore = this.enableTTL
+      ? options.nameRecordsCacheStore ?? new InMemoryNameRecordsCacheStore()
+      : undefined;
 
     this._init_actors_before();
 
