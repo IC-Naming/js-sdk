@@ -1,17 +1,27 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { IcNamingClient } from "@ic-naming/client";
+import { IcNamingClient, NameRecordsValue } from "@ic-naming/client";
 import logo from "./logo.png";
 import "./App.css";
 
 function App() {
-  const client = useMemo(
-    () =>
-      new IcNamingClient({
-        net: "MAINNET",
-        mode: "production",
-      }),
-    []
-  );
+  const client = useMemo(() => {
+    // ! You can use localStorage or indexedDB in production
+    const inMemoryNameRecordsCacheStore = {
+      map: {} as Record<string, NameRecordsValue>,
+      async getRecordsByName(name: string) {
+        return this.map[name];
+      },
+      async setRecordsByName(name: string, value: NameRecordsValue) {
+        this.map[name] = value;
+      },
+    };
+
+    return new IcNamingClient({
+      net: "MAINNET",
+      mode: "production",
+      nameRecordsCacheStore: inMemoryNameRecordsCacheStore,
+    });
+  }, []);
 
   const [keyword, setKeyword] = useState("");
   const [log, setLog] = useState("Input please");
@@ -47,6 +57,39 @@ function App() {
     };
   }, [client, keyword]);
 
+  const [records, setRecords] = useState<string | Array<[string, string]>>("");
+
+  useEffect(() => {
+    let cancel = false;
+
+    const fn = async () => {
+      setRecords("");
+
+      if (!(keyword && log.includes("has been taken"))) return;
+
+      setRecords("Loading Records ...");
+
+      let result;
+      try {
+        result = await client.getRecordsOfName(keyword + ".icp");
+      } catch (error) {
+        if (cancel) return;
+        setRecords((error as Error).message);
+
+        throw error;
+      }
+
+      if (cancel) return;
+      setRecords(result);
+    };
+
+    fn();
+
+    return () => {
+      cancel = true;
+    };
+  }, [log, keyword, client]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -63,7 +106,26 @@ function App() {
           </div>
         </div>
 
-        <p style={{ margin: "0 10px 100px" }}>{log}</p>
+        <div style={{ margin: "0 10px 50px" }}>{log}</div>
+
+        <div style={{ margin: "20px 10px 100px", fontSize: "16px" }}>
+          {typeof records == "string" ? (
+            records
+          ) : records.length ? (
+            <>
+              <p>Have {records.length} record(s):</p>
+              <ul>
+                {records.map(([key, value]) => (
+                  <li key={key}>
+                    {key}: {value}
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            "Have Not Records"
+          )}
+        </div>
 
         <a
           className="App-link"
