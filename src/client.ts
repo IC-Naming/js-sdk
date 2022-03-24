@@ -1,11 +1,33 @@
 import { Principal } from "@dfinity/principal";
 // import { QuotaType } from "./canisters/registrar/registrar.did";
-import { IcNamingClientBase, IcNamingClientInitOptions } from "./internal/base";
+import { IcNamingClientBase } from "./internal/base";
+import {
+  InMemoryNameRecordsCacheStore,
+  NameRecordsCacheStore,
+} from "./internal/cache";
+import { IcNamingClientInitOptions } from "./internal/option";
 import { throwable } from "./internal/utils";
 
 export class IcNamingClient extends IcNamingClientBase {
+  private enableTTL: boolean;
+  private nameRecordsCacheStore?: NameRecordsCacheStore;
+
   constructor(options: IcNamingClientInitOptions) {
     super(options);
+
+    this.enableTTL = options.enableTTL ?? false;
+
+    this.nameRecordsCacheStore = this.enableTTL
+      ? options.nameRecordsCacheStore ?? new InMemoryNameRecordsCacheStore()
+      : undefined;
+  }
+
+  private async dispatchNameRecordsCache(
+    fn: (store: NameRecordsCacheStore) => Promise<void>
+  ) {
+    if (this.enableTTL && this.nameRecordsCacheStore) {
+      await fn(this.nameRecordsCacheStore);
+    }
   }
 
   /* Registrar */

@@ -1,58 +1,32 @@
-import {
-  Actor,
-  ActorConfig,
-  ActorSubclass,
-  HttpAgent,
-  HttpAgentOptions,
-} from "@dfinity/agent";
+import { Actor, ActorConfig, ActorSubclass, HttpAgent } from "@dfinity/agent";
 import { IDL } from "@dfinity/candid";
-
-import * as FavoritesDid from "../canisters/favorites/favorites.did";
-import * as RegistrarDid from "../canisters/registrar/registrar.did";
-import * as RegistryDid from "../canisters/registry/registry.did";
-import * as ResolverDid from "../canisters/resolver/resolver.did";
+import { IcNamingClientInitOptions } from "./option";
 import {
   IC_LOCAL_HOST,
   IC_PUBLIC_HOST,
   MAINNET_CANISTER_ID_GROUP,
   TICP_CANISTER_ID_GROUP,
 } from "./config";
-import { InMemoryNameRecordsCacheStore, NameRecordsCacheStore } from "./cache";
 
-export interface IcNamingClientInitOptions {
-  net: "MAINNET" | "TICP";
-  mode: "production" | "local";
-  httpAgentOptions?: HttpAgentOptions;
-  enableTTL?: boolean;
-  nameRecordsCacheStore?: NameRecordsCacheStore;
-}
-
-export interface InternalStores {
-  nameRecordsCacheStore?: NameRecordsCacheStore;
-}
+import * as FavoritesDid from "../canisters/favorites/favorites.did";
+import * as RegistrarDid from "../canisters/registrar/registrar.did";
+import * as RegistryDid from "../canisters/registry/registry.did";
+import * as ResolverDid from "../canisters/resolver/resolver.did";
 
 export class IcNamingClientBase {
-  private _options: IcNamingClientInitOptions;
-  private _httpAgent: HttpAgent;
-
-  protected enableTTL: boolean;
-  protected nameRecordsCacheStore?: NameRecordsCacheStore;
+  protected options: IcNamingClientInitOptions;
 
   protected favorites;
   protected registrar;
   protected registry;
   protected resolver;
 
+  private _httpAgent: HttpAgent;
+
   constructor(options: IcNamingClientInitOptions) {
-    this._options = options;
+    this.options = options;
 
     this._httpAgent = this._initHttpAgent();
-
-    this.enableTTL = options.enableTTL ?? false;
-
-    this.nameRecordsCacheStore = this.enableTTL
-      ? options.nameRecordsCacheStore ?? new InMemoryNameRecordsCacheStore()
-      : undefined;
 
     this._init_actors_before();
 
@@ -81,13 +55,13 @@ export class IcNamingClientBase {
 
   private _initHttpAgent() {
     return new HttpAgent({
-      host: this._options.mode === "local" ? IC_LOCAL_HOST : IC_PUBLIC_HOST,
-      ...this._options.httpAgentOptions,
+      host: this.options.mode === "local" ? IC_LOCAL_HOST : IC_PUBLIC_HOST,
+      ...this.options.httpAgentOptions,
     });
   }
 
   private _init_actors_before() {
-    if (this._options.mode === "local") {
+    if (this.options.mode === "local") {
       this._httpAgent.fetchRootKey().catch((err) => {
         console.warn(
           "Unable to fetch root key. Check to ensure that your local replica is running"
@@ -106,14 +80,6 @@ export class IcNamingClientBase {
       agent: this._httpAgent,
       canisterId,
     }) as ActorSubclass<ServiceType>;
-  }
-
-  protected async dispatchNameRecordsCache(
-    fn: (store: NameRecordsCacheStore) => Promise<void>
-  ) {
-    if (this._options.nameRecordsCacheStore) {
-      await fn(this._options.nameRecordsCacheStore);
-    }
   }
 }
 

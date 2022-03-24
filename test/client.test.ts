@@ -216,15 +216,15 @@ describe("IcNamingClient", () => {
     const client = new IcNamingClient({
       net: "MAINNET",
       mode: "local",
+      enableTTL: true,
       nameRecordsCacheStore: inMemoryStore,
     });
 
     client["resolver"] = { get_record_value: () => {} } as any;
-    client["dispatchNameRecordsCache"] = jest
-      .fn()
-      .mockImplementation(async (fn) => {
-        await fn(inMemoryStore);
-      });
+    const spyDispatchNameRecordsCachet = jest.spyOn(
+      client,
+      "dispatchNameRecordsCache" as any
+    );
     client["getRegistryOfName"] = jest.fn().mockResolvedValue({
       ttl: BigInt(600),
       resolver: dummyPrincipal,
@@ -245,7 +245,7 @@ describe("IcNamingClient", () => {
       ["key2", "value2"],
       ["key3", "value3"],
     ]);
-    expect(client["dispatchNameRecordsCache"]).toHaveBeenCalledTimes(2);
+    expect(spyDispatchNameRecordsCachet).toHaveBeenCalledTimes(2);
     expect(client["resolver"].get_record_value).toBeCalledTimes(1);
     expect(client["getRegistryOfName"]).toBeCalledTimes(1);
     expect(spyStoreGet).toBeCalledTimes(2);
@@ -256,7 +256,7 @@ describe("IcNamingClient", () => {
       ["key2", "value2"],
       ["key3", "value3"],
     ]);
-    expect(client["dispatchNameRecordsCache"]).toHaveBeenCalledTimes(2 + 1);
+    expect(spyDispatchNameRecordsCachet).toHaveBeenCalledTimes(2 + 1);
     expect(client["resolver"].get_record_value).toBeCalledTimes(1 + 0);
     expect(client["getRegistryOfName"]).toBeCalledTimes(1 + 0);
     expect(spyStoreGet).toBeCalledTimes(2 + 1);
@@ -269,7 +269,7 @@ describe("IcNamingClient", () => {
       ["key2", "value2"],
       ["key3", "value3"],
     ]);
-    expect(client["dispatchNameRecordsCache"]).toHaveBeenCalledTimes(2 + 1 + 2);
+    expect(spyDispatchNameRecordsCachet).toHaveBeenCalledTimes(2 + 1 + 2);
     expect(client["resolver"].get_record_value).toBeCalledTimes(1 + 0 + 1);
     expect(client["getRegistryOfName"]).toBeCalledTimes(1 + 0 + 1);
     expect(spyStoreGet).toBeCalledTimes(2 + 1 + 2);
@@ -350,5 +350,24 @@ describe("IcNamingClient", () => {
       "world",
     ]);
     expect(client["favorites"].get_favorites).toBeCalledTimes(1);
+  });
+
+  it("should not enableTTL by default", () => {
+    const client = new IcNamingClient({
+      net: "MAINNET",
+      mode: "local",
+    });
+
+    expect(client["nameRecordsCacheStore"]).toBeFalsy();
+  });
+
+  it("should not enableTTL by default", () => {
+    const client = new IcNamingClient({
+      net: "MAINNET",
+      mode: "local",
+      enableTTL: true,
+    });
+
+    expect(client["nameRecordsCacheStore"]).toBeTruthy();
   });
 });
