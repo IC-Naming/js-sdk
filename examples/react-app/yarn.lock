@@ -1183,10 +1183,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@ic-naming/client@0.3.0-1":
-  version "0.3.0-1"
-  resolved "https://registry.yarnpkg.com/@ic-naming/client/-/client-0.3.0-1.tgz#4250aae8fb39af0262a444467a4dffb3800e5417"
-  integrity sha512-7MhBfp+PmLQJvRe70ypN5P1S9+zHgS2g6MXeHc+52uMkQ4sXwyw//63CUMzAe0BL3HNTLkUSrArCKCIDHJS/yQ==
+"@ic-naming/client@0.3.0-2":
+  version "0.3.0-2"
+  resolved "https://registry.yarnpkg.com/@ic-naming/client/-/client-0.3.0-2.tgz#e5d1e4ebff8a5a226fbe12eff7fee74947a2adf0"
+  integrity sha512-+0ZZwlG0sNwenyZ5nrFEL46M1gvowKBe8xDNA1ojK5jaUxMmlNO0n3LtTSErtoPKL0HA2HzBq1LtAkqWDq/1wA==
   dependencies:
     "@dfinity/agent" "^0.10.3"
     "@dfinity/candid" "^0.10.3"

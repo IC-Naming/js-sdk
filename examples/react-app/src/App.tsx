@@ -1,25 +1,14 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { IcNamingClient, NameRecordsValue } from "@ic-naming/client";
+import { useEffect, useMemo, useState } from "react";
+import { IcNamingClient } from "@ic-naming/client";
 import logo from "./logo.png";
 import "./App.css";
 
 function App() {
   const client = useMemo(() => {
-    // ! You can use localStorage or indexedDB in production
-    const inMemoryNameRecordsCacheStore = {
-      map: {} as Record<string, NameRecordsValue>,
-      async getRecordsByName(name: string) {
-        return this.map[name];
-      },
-      async setRecordsByName(name: string, value: NameRecordsValue) {
-        this.map[name] = value;
-      },
-    };
-
     return new IcNamingClient({
       net: "MAINNET",
       mode: "production",
-      nameRecordsCacheStore: inMemoryNameRecordsCacheStore,
+      enableTTL: true,
     });
   }, []);
 
