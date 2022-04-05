@@ -31,8 +31,8 @@
     "dist"
   ],
   "dependencies": {
-    "@dfinity/agent": "^0.10.3",
-    "@dfinity/candid": "^0.10.3",
-    "@dfinity/principal": "^0.10.3"
+    "@dfinity/agent": "^0.10.4",
+    "@dfinity/candid": "^0.10.4",
+    "@dfinity/principal": "^0.10.4"
   }
 }
