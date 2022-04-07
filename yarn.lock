@@ -297,10 +297,10 @@
     js-sha256 "0.9.0"
     simple-cbor "^0.4.1"
 
-"@dfinity/candid@^0.10.4":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@dfinity/candid/-/candid-0.10.4.tgz#32f666f6a069d87b6f7007d7ad3c50ab307d8b76"
-  integrity sha512-Rd8uoo3jd4FLmGY9aBgTRdBCYVuG/Y7QmpDJB3eQvsU3WHhVZJWLMHcodnMIoy2bzqzCKeTdLkL565K7qx5H3Q==
+"@dfinity/candid@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@dfinity/candid/-/candid-0.11.0.tgz#ac0514e1fbcd4d8bd0670c623de3a9243bd2387d"
+  integrity sha512-UFSKi4RGOr+H8l0Z19uo7yDfDJFoSNL8zNi2zVSW22J+f17c3y1wRAasY6g3FS/UlLl/b+32WXO6KxHt+K0/2g==
 
 "@dfinity/principal@^0.10.4":
   version "0.10.4"
