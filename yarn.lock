@@ -286,10 +286,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@dfinity/agent@^0.10.4":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@dfinity/agent/-/agent-0.10.4.tgz#269406f1cb5524276c52ddf37e933abd75529063"
-  integrity sha512-/O1443GWkQ6GngrXos/ShAbnF9IgUlWclzaQn/qEsGJIey6S7tty+iOa5yZqOS1BtOTnDe+TYh8GeERZZn7vvg==
+"@dfinity/agent@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@dfinity/agent/-/agent-0.11.0.tgz#97318a9a785b18f1f791c46375fb211a180b389a"
+  integrity sha512-4O2b5aYAqfjvkI4GF4Zm3cufdsa8DjHBWqvhnowlNynu5fpJgAXdHAclDcRiuaCY8xzaf9pCwER19h1+Yeux2Q==
   dependencies:
     base64-arraybuffer "^0.2.0"
     bignumber.js "^9.0.0"
