@@ -302,10 +302,10 @@
   resolved "https://registry.yarnpkg.com/@dfinity/candid/-/candid-0.10.4.tgz#32f666f6a069d87b6f7007d7ad3c50ab307d8b76"
   integrity sha512-Rd8uoo3jd4FLmGY9aBgTRdBCYVuG/Y7QmpDJB3eQvsU3WHhVZJWLMHcodnMIoy2bzqzCKeTdLkL565K7qx5H3Q==
 
-"@dfinity/principal@^0.10.4":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@dfinity/principal/-/principal-0.10.4.tgz#8f28f631929cc420a4238f75930090aba84d74b8"
-  integrity sha512-qwzpmq5wfyeKMBspRZmuYvTxu1dqN+IY0ThACHTRh6D58QjnVQNCD3Hq9d5eEDu0qyNcY22cJEWwzrzZaaoVmw==
+"@dfinity/principal@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@dfinity/principal/-/principal-0.11.0.tgz#d3e7f791dd8895f4f94ef36d0289dddea0b8fc80"
+  integrity sha512-yTKTaxjDP5EHgzzu8lmNnHhUUH5rQQ0L/qUA04VJHuSCb4OweEWKD9/qSPueWhdJJZ94MU3Pp56ORNK3Cs1qQA==
 
 "@hutson/parse-repository-url@^3.0.0":
   version "3.0.2"
