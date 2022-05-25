@@ -19,7 +19,7 @@
     "@types/node": "16.11.31",
     "jest": "27.5.1",
     "rollup": "2.70.2",
-    "rollup-plugin-dts": "4.2.0",
+    "rollup-plugin-dts": "4.2.2",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.4.0",
     "standard-version": "9.3.2",
