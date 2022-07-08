@@ -1,6 +1,6 @@
 {
   "name": "@ic-naming/client",
-  "version": "0.3.1",
+  "version": "0.4.1",
   "main": "dist/index-cjs.js",
   "module": "dist/index-esm.js",
   "typings": "dist/index.d.ts",
@@ -31,8 +31,12 @@
     "dist"
   ],
   "dependencies": {
-    "@dfinity/agent": "^0.10.4",
-    "@dfinity/candid": "^0.10.4",
-    "@dfinity/principal": "^0.10.4"
+    "@dfinity/agent": "^0.11.0",
+    "@dfinity/candid": "^0.11.0",
+    "@dfinity/principal": "^0.11.0",
+    "@icnaming/favorites_client": "^0.0.5",
+    "@icnaming/registrar_client": "^0.0.5",
+    "@icnaming/registry_client": "^0.0.5",
+    "@icnaming/resolver_client": "^0.0.5"
   }
 }

@@ -4,14 +4,28 @@ import { IcNamingClientInitOptions } from "./option";
 import {
   IC_LOCAL_HOST,
   IC_PUBLIC_HOST,
-  MAINNET_CANISTER_ID_GROUP,
+  IC_CANISTER_ID_GROUP,
+  ICP_CANISTER_ID_GROUP,
   TICP_CANISTER_ID_GROUP,
+  NetCanisterIdMapping,
 } from "./config";
 
-import * as FavoritesDid from "../canisters/favorites/favorites.did";
-import * as RegistrarDid from "../canisters/registrar/registrar.did";
-import * as RegistryDid from "../canisters/registry/registry.did";
-import * as ResolverDid from "../canisters/resolver/resolver.did";
+import {
+  idlFactory as FavoritesIDL,
+  _SERVICE as Favorites,
+} from "@icnaming/favorites_client";
+import {
+  idlFactory as RegistrarIDL,
+  _SERVICE as Registrar,
+} from "@icnaming/registrar_client";
+import {
+  idlFactory as RegistryIDL,
+  _SERVICE as Registry,
+} from "@icnaming/registry_client";
+import {
+  idlFactory as ResolverIDL,
+  _SERVICE as Resolver,
+} from "@icnaming/resolver_client";
 
 export class IcNamingClientBase {
   protected options: IcNamingClientInitOptions;
@@ -30,25 +44,35 @@ export class IcNamingClientBase {
 
     this._init_actors_before();
 
-    const canisterIdMapping =
-      options.net === "MAINNET"
-        ? MAINNET_CANISTER_ID_GROUP
-        : TICP_CANISTER_ID_GROUP;
+    let canisterIdMapping: NetCanisterIdMapping;
 
-    this.favorites = this._createActor<FavoritesDid._SERVICE>(
-      toDidModuleType(FavoritesDid).idlFactory,
+    switch (options.suffix) {
+      case "ICP":
+        canisterIdMapping = ICP_CANISTER_ID_GROUP;
+        break;
+      case "TICP":
+        canisterIdMapping = TICP_CANISTER_ID_GROUP;
+        break;
+      case "IC":
+      default:
+        canisterIdMapping = IC_CANISTER_ID_GROUP;
+        break;
+    }
+
+    this.favorites = this._createActor<Favorites>(
+      toDidModuleType(FavoritesIDL).idlFactory,
       canisterIdMapping.favorites
     );
-    this.registrar = this._createActor<RegistrarDid._SERVICE>(
-      toDidModuleType(RegistrarDid).idlFactory,
+    this.registrar = this._createActor<Registrar>(
+      toDidModuleType(RegistrarIDL).idlFactory,
       canisterIdMapping.registrar
     );
-    this.registry = this._createActor<RegistryDid._SERVICE>(
-      toDidModuleType(RegistryDid).idlFactory,
+    this.registry = this._createActor<Registry>(
+      toDidModuleType(RegistryIDL).idlFactory,
       canisterIdMapping.registry
     );
-    this.resolver = this._createActor<ResolverDid._SERVICE>(
-      toDidModuleType(ResolverDid).idlFactory,
+    this.resolver = this._createActor<Resolver>(
+      toDidModuleType(ResolverIDL).idlFactory,
       canisterIdMapping.resolver
     );
   }

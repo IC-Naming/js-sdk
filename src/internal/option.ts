@@ -2,7 +2,7 @@ import { HttpAgentOptions } from "@dfinity/agent";
 import { NameRecordsCacheStore } from "./cache";
 
 export interface IcNamingClientInitOptions {
-  net: "MAINNET" | "TICP";
+  suffix: "IC" | "ICP" | "TICP";
   mode: "production" | "local";
   httpAgentOptions?: HttpAgentOptions;
   enableTTL?: boolean;
