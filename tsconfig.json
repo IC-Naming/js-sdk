@@ -10,7 +10,8 @@
     "moduleResolution": "Node",
     "esModuleInterop": true,
     "allowJs": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noImplicitAny": false
   },
   "exclude": ["./examples/"]
 }

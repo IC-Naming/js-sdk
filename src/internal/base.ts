@@ -30,10 +30,10 @@ import {
 export class IcNamingClientBase {
   protected options: IcNamingClientInitOptions;
 
-  protected favorites;
-  protected registrar;
-  protected registry;
-  protected resolver;
+  protected favorites:Favorites;
+  protected registrar:Registrar;
+  protected registry:Registry;
+  protected resolver:Resolver;
 
   private _httpAgent: HttpAgent;
 
