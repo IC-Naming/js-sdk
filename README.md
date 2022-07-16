@@ -31,8 +31,8 @@ Normal:
 import { IcNamingClient } from "@ic-naming/client";
 
 const client = new IcNamingClient({
-  net: "MAINNET", // MAINNET | TICP
-  mode: "local", // local | production
+  net: "IC", // IC | ICP | TICP
+  mode: "production", // local | production
 });
 
 client.isAvailableNaming("hello.world").then((isAvailable) => {
@@ -46,8 +46,8 @@ Special host and identity:
 import { IcNamingClient } from "@ic-naming/client";
 
 const client = new IcNamingClient({
-  net: "MAINNET",
-  mode: "local",
+  net: "IC",
+  mode: "production", // local | production
   httpAgent: {
     host: "https://ic0.app", // default by mode
     identity: {
