@@ -10,12 +10,11 @@ export interface NetCanisterIdMapping {
 
 // TODO : update canister id
 export const IC_CANISTER_ID_GROUP: NetCanisterIdMapping = {
-  registrar: "cymrc-fqaaa-aaaam-aacaa-cai",
-  registry: "c7nxw-iiaaa-aaaam-aacaq-cai",
-  resolver: "cwo4k-6aaaa-aaaam-aacba-cai",
-  favorites: "crp26-tyaaa-aaaam-aacbq-cai",
+  registrar: "ft6xr-taaaa-aaaam-aafmq-cai",
+  registry: "f542z-iqaaa-aaaam-aafnq-cai",
+  resolver: "fi3lu-jyaaa-aaaam-aafoa-cai",
+  favorites: "fu7rf-6yaaa-aaaam-aafma-cai",
 };
-
 
 export const ICP_CANISTER_ID_GROUP: NetCanisterIdMapping = {
   registrar: "cymrc-fqaaa-aaaam-aacaa-cai",
