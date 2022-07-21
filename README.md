@@ -2,7 +2,7 @@
 
 [![CI & CD](https://github.com/IC-Naming/js-sdk/actions/workflows/pipeline.yml/badge.svg)][1]
 
-[![NPM](https://nodei.co/npm/@ic-naming/client.png?downloads=true&downloadRank=true&stars=true)][1]
+[![NPM](https://nodei.co/npm/@ic-naming/client.png?downloads=true&downloadRank=true&stars=true)][2]
 
 ## Installing
 
@@ -30,50 +30,50 @@ Using unpkg CDN. Access through `(window or global).IcNaming.Client`:
 ## Example
 
 ```js
-import { Principal } from "@dfinity/principal";
-import { IcNamingClient } from "@ic-naming/client";
+import { Principal } from '@dfinity/principal';
+import { IcNamingClient } from '@ic-naming/client';
 
 const client = new IcNamingClient({
-  net: "IC", // IC | ICP | TICP
-  mode: "production", // local | production
+  net: 'IC', // IC | ICP | TICP
+  mode: 'production' // local | production
 });
 
 // get records
-client.getRecordsOfName("helloworld.ic").then((records) => {
+client.getRecordsOfName('helloworld.ic').then(records => {
   // get ICP address(principal)
-  const principal = records.find((r) => r[0] === "principal.icp");
+  const principal = records.find(r => r[0] === 'principal.icp');
   console.debug(`helloworld.ic's principal is ${principal}`);
 
   // get ICP address(account id)
-  const accountId = records.find((r) => r[0] === "account_id.icp");
+  const accountId = records.find(r => r[0] === 'account_id.icp');
   console.debug(`helloworld.ic's account id is ${accountId}`);
 
   // get twitter
-  const twitter = records.find((r) => r[0] === "com.twitter");
+  const twitter = records.find(r => r[0] === 'com.twitter');
   console.debug(`helloworld.ic's twitter is ${twitter}`);
 
   // get eth address
-  const ethAdddress = records.find((r) => r[0] === "token.eth");
+  const ethAdddress = records.find(r => r[0] === 'token.eth');
   console.debug(`helloworld.ic's eth adddress is ${ethAdddress}`);
 });
 
 // get name's registrant
-client.getRegistrantOfName("helloworld.ic").then((registrant) => {
+client.getRegistrantOfName('helloworld.ic').then(registrant => {
   console.debug(`helloworld.ic's registrant is ${registrant}`);
 });
 
 // get name's expired time
-client.getExpiredTimeOfName("helloworld.ic").then((timestamp) => {
+client.getExpiredTimeOfName('helloworld.ic').then(timestamp => {
   const expiredTime = new Date(Number(timestamp));
   console.debug(`helloworld.ic's expired time is ${expiredTime}`);
 });
 
 // get reverse resolve
 const thePrincipal = Principal.fromText(
-  "v2xhg-um7x6-mhni4-sgqsc-qarqs-bgoyy-ngobl-qoe7c-7a4cm-bvn4f-pqe"
+  'v2xhg-um7x6-mhni4-sgqsc-qarqs-bgoyy-ngobl-qoe7c-7a4cm-bvn4f-pqe'
 );
 
-client.getReverseResolve(thePrincipal).then((name) => {
+client.getReverseResolve(thePrincipal).then(name => {
   if (name) console.debug(`reverse resolve name is ${name}`);
   else console.debug(`reverse resolve name not exist`);
 });
@@ -82,13 +82,13 @@ client.getReverseResolve(thePrincipal).then((name) => {
 Special host and identity:
 
 ```js
-import { IcNamingClient } from "@ic-naming/client";
+import { IcNamingClient } from '@ic-naming/client';
 
 const client = new IcNamingClient({
-  net: "IC",
-  mode: "production", // local | production
+  net: 'IC',
+  mode: 'production', // local | production
   httpAgent: {
-    host: "https://ic0.app", // default by mode
+    host: 'https://ic0.app', // default by mode
     identity: {
       identity: {
         transformRequest: () => {
@@ -96,10 +96,10 @@ const client = new IcNamingClient({
         },
         getPrincipal: () => {
           /* ... */
-        },
-      },
-    },
-  },
+        }
+      }
+    }
+  }
 });
 ```
 

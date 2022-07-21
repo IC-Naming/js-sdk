@@ -1,33 +1,33 @@
-import { useEffect, useMemo, useState } from "react";
-import { IcNamingClient } from "@ic-naming/client";
-import logo from "./logo.png";
-import "./App.css";
+import { useEffect, useMemo, useState } from 'react';
+import { IcNamingClient } from '@ic-naming/client';
+import logo from './logo.png';
+import './App.css';
 
 function App() {
   const client = useMemo(() => {
     return new IcNamingClient({
-      net: "IC",
-      mode: "production",
-      enableTTL: true,
+      net: 'IC',
+      mode: 'production',
+      enableTTL: true
     });
   }, []);
 
-  const [keyword, setKeyword] = useState("");
-  const [log, setLog] = useState("Input please");
+  const [keyword, setKeyword] = useState('');
+  const [log, setLog] = useState('Input please');
 
   useEffect(() => {
     let cancel = false;
 
     const fn = async () => {
-      setLog("Input please");
+      setLog('Input please');
 
       if (!keyword) return;
 
-      setLog("Loading ...");
+      setLog('Loading ...');
 
       let result;
       try {
-        result = await client.isAvailableNaming(keyword + ".icp");
+        result = await client.isAvailableNaming(keyword + '.icp');
       } catch (error) {
         if (cancel) return;
         setLog((error as Error).message);
@@ -36,7 +36,7 @@ function App() {
       }
 
       if (cancel) return;
-      setLog(result ? "Available" : "Not Available");
+      setLog(result ? 'Available' : 'Not Available');
     };
 
     fn();
@@ -46,21 +46,21 @@ function App() {
     };
   }, [client, keyword]);
 
-  const [records, setRecords] = useState<string | Array<[string, string]>>("");
+  const [records, setRecords] = useState<string | Array<[string, string]>>('');
 
   useEffect(() => {
     let cancel = false;
 
     const fn = async () => {
-      setRecords("");
+      setRecords('');
 
-      if (!(keyword && log.includes("has been taken"))) return;
+      if (!(keyword && log.includes('has been taken'))) return;
 
-      setRecords("Loading Records ...");
+      setRecords('Loading Records ...');
 
       let result;
       try {
-        result = await client.getRecordsOfName(keyword + ".icp");
+        result = await client.getRecordsOfName(keyword + '.icp');
       } catch (error) {
         if (cancel) return;
         setRecords((error as Error).message);
@@ -90,15 +90,15 @@ function App() {
             <input
               placeholder="Search names or addresses"
               value={keyword}
-              onChange={(e) => setKeyword(e.currentTarget.value)}
+              onChange={e => setKeyword(e.currentTarget.value)}
             />
           </div>
         </div>
 
-        <div style={{ margin: "0 10px 50px" }}>{log}</div>
+        <div style={{ margin: '0 10px 50px' }}>{log}</div>
 
-        <div style={{ margin: "20px 10px 100px", fontSize: "16px" }}>
-          {typeof records == "string" ? (
+        <div style={{ margin: '20px 10px 100px', fontSize: '16px' }}>
+          {typeof records == 'string' ? (
             records
           ) : records.length ? (
             <>
@@ -112,7 +112,7 @@ function App() {
               </ul>
             </>
           ) : (
-            "Have Not Records"
+            'Have Not Records'
           )}
         </div>
 

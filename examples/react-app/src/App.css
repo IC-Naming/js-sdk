@@ -33,7 +33,7 @@
   width: 100%;
   max-width: 870px;
 
-  transition: box-shadow .28s;
+  transition: box-shadow 0.28s;
 }
 .search-input-wrapper:active,
 .search-input-wrapper:focus,

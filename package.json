@@ -61,7 +61,7 @@
     "arrowParens": "avoid"
   },
   "lint-staged": {
-    "*.{md,json,yml,ts}": "prettier --write"
+    "*.{html,md,css,json,yml,ts,tsx}": "prettier --write"
   },
   "scripts": {
     "prepare": "husky install",

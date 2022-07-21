@@ -15,10 +15,10 @@
   },
   "exclude": ["./examples/"],
   "typedocOptions": {
-      "name": "IC-Naming JavaScript SDK",
-      "excludeExternals": true,
-      "excludePrivate": true,
-      "readme": "./README.md",
-      "out": "docs/"
+    "name": "IC-Naming JavaScript SDK",
+    "excludeExternals": true,
+    "excludePrivate": true,
+    "readme": "./README.md",
+    "out": "docs/"
   }
 }
