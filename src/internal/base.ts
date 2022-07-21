@@ -6,7 +6,6 @@ import {
   IC_PUBLIC_HOST,
   IC_CANISTER_ID_GROUP,
   ICP_CANISTER_ID_GROUP,
-  TICP_CANISTER_ID_GROUP,
   NetCanisterIdMapping,
 } from "./config";
 
@@ -49,9 +48,6 @@ export class IcNamingClientBase {
     switch (options.suffix) {
       case "ICP":
         canisterIdMapping = ICP_CANISTER_ID_GROUP;
-        break;
-      case "TICP":
-        canisterIdMapping = TICP_CANISTER_ID_GROUP;
         break;
       case "IC":
       default:
