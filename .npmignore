@@ -1,0 +1,10 @@
+yarn.lock
+prettier.config.js
+jest.config.js
+test/
+docs/
+rollup.config.js
+examples/
+.github/
+.gitpod.yml
+renovate.json

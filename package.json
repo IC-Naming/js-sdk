@@ -1,32 +1,27 @@
 {
   "name": "@ic-naming/client",
-  "version": "0.4.1",
+  "version": "0.4.2",
+  "license": "Apache-2.0",
+  "keywords": [
+    "ic",
+    "dns",
+    "web3",
+    "blockchain",
+    "sdk",
+    "api",
+    "client"
+  ],
+  "homepage": "https://ic-naming.github.io/js-sdk/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IC-Naming/js-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/IC-Naming/js-sdk/issues"
+  },
   "main": "dist/index-cjs.js",
   "module": "dist/index-esm.js",
   "typings": "dist/index.d.ts",
-  "scripts": {
-    "dev": "rollup -c -w",
-    "type": "tsc --project ./tsconfig.json --noEmit --skipLibCheck",
-    "test": "jest ./test/",
-    "build": "rollup -c",
-    "release": "standard-version"
-  },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "21.1.0",
-    "@rollup/plugin-node-resolve": "13.1.3",
-    "@rollup/plugin-typescript": "8.3.2",
-    "@types/jest": "27.4.1",
-    "@types/node": "16.11.31",
-    "jest": "27.5.1",
-    "rollup": "2.70.2",
-    "rollup-plugin-dts": "4.2.0",
-    "rollup-plugin-node-builtins": "^2.1.2",
-    "rollup-plugin-node-globals": "^1.4.0",
-    "standard-version": "9.3.2",
-    "ts-jest": "27.1.4",
-    "tslib": "2.4.0",
-    "typescript": "4.6.3"
-  },
   "files": [
     "dist"
   ],
@@ -34,9 +29,36 @@
     "@dfinity/agent": ">=0.11.0",
     "@dfinity/candid": ">=0.11.0",
     "@dfinity/principal": ">=0.11.0",
-    "@icnaming/favorites_client": "0.0.16",
-    "@icnaming/registrar_client": "0.0.16",
-    "@icnaming/registry_client": "0.0.16",
-    "@icnaming/resolver_client": "0.0.16"
+    "@icnaming/favorites_client": "0.0.22",
+    "@icnaming/registrar_client": "0.0.22",
+    "@icnaming/registry_client": "0.0.22",
+    "@icnaming/resolver_client": "0.0.22"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "21.1.0",
+    "@rollup/plugin-node-resolve": "13.1.3",
+    "@rollup/plugin-typescript": "8.3.2",
+    "@types/jest": "28.1.6",
+    "@types/node": "^16.11.45",
+    "jest": "^28.1.3",
+    "rollup": "2.70.2",
+    "rollup-plugin-dts": "4.2.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "standard-version": "^9.5.0",
+    "ts-jest": "^28.0.7",
+    "tslib": "2.4.0",
+    "typedoc": "^0.23.8",
+    "typedoc-plugin-mdn-links": "^2.0.0",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "dev": "rollup -c -w",
+    "type": "tsc --project ./tsconfig.json --noEmit --skipLibCheck",
+    "pack": "npm run type  &&  rollup -c",
+    "test": "jest --coverage ./test/",
+    "build": "rm -rf dist/ docs/  &&  typedoc src/  &&  npm run pack",
+    "prepublishOnly": "npm test  &&  npm run build",
+    "release": "standard-version"
   }
 }

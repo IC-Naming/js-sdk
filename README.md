@@ -1,4 +1,8 @@
-# IC-Naming JS SDK
+# IC-Naming JavaScript SDK
+
+[![CI & CD](https://github.com/IC-Naming/js-sdk/actions/workflows/pipeline.yml/badge.svg)][1]
+
+[![NPM](https://nodei.co/npm/@ic-naming/client.png?downloads=true&downloadRank=true&stars=true)][1]
 
 ## Installing
 
@@ -65,13 +69,14 @@ client.getExpiredTimeOfName("helloworld.ic").then((timestamp) => {
 });
 
 // get reverse resolve
-const thePrincipal = Principal.fromText("v2xhg-um7x6-mhni4-sgqsc-qarqs-bgoyy-ngobl-qoe7c-7a4cm-bvn4f-pqe");
+const thePrincipal = Principal.fromText(
+  "v2xhg-um7x6-mhni4-sgqsc-qarqs-bgoyy-ngobl-qoe7c-7a4cm-bvn4f-pqe"
+);
 
 client.getReverseResolve(thePrincipal).then((name) => {
-  if(name) console.debug(`reverse resolve name is ${name}`);
-  else console.debug(`reverse resolve name not exist`);  
+  if (name) console.debug(`reverse resolve name is ${name}`);
+  else console.debug(`reverse resolve name not exist`);
 });
-
 ```
 
 Special host and identity:
@@ -106,7 +111,7 @@ const client = new IcNamingClient({
 
 [client.ts](./src/client.ts)
 
-**Document TODO**
+https://IC-Naming.github.io/js-sdk/
 
 ## Contribute
 
@@ -119,3 +124,14 @@ yarn test # jest unit test
 yarn build # rollup build to dist/
 yarn release # generate new version
 ```
+
+## Release
+
+```shell
+git tag vX.Y.Z HEAD  # Create a tag started with "v" to trigger CI/CD pipeline
+
+git push origin main --tags
+```
+
+[1]: https://github.com/IC-Naming/js-sdk/actions/workflows/pipeline.yml
+[2]: https://nodei.co/npm/@ic-naming/client/
