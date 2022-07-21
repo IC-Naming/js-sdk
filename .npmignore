@@ -1,10 +1,11 @@
 yarn.lock
-prettier.config.js
 jest.config.js
 test/
+coverage/
 docs/
 rollup.config.js
 examples/
+.husky/
 .github/
 .gitpod.yml
 renovate.json

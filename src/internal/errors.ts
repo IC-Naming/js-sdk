@@ -9,7 +9,7 @@ export class IcNamingCanisterError extends IcNamingError {
       Err?: { message?: string };
     };
 
-    super(`IcNamingCanisterError: ${result?.Err?.message || "unknown"}`);
+    super(`IcNamingCanisterError: ${result?.Err?.message || 'unknown'}`);
     this.theIcNamingCanisterErrorResult = rawResult;
   }
 }

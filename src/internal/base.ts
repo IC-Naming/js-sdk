@@ -1,38 +1,38 @@
-import { Actor, ActorConfig, ActorSubclass, HttpAgent } from "@dfinity/agent";
-import { IDL } from "@dfinity/candid";
-import { IcNamingClientInitOptions } from "./option";
+import { Actor, ActorConfig, ActorSubclass, HttpAgent } from '@dfinity/agent';
+import { IDL } from '@dfinity/candid';
+import { IcNamingClientInitOptions } from './option';
 import {
   IC_LOCAL_HOST,
   IC_PUBLIC_HOST,
   IC_CANISTER_ID_GROUP,
   ICP_CANISTER_ID_GROUP,
-  NetCanisterIdMapping,
-} from "./config";
+  NetCanisterIdMapping
+} from './config';
 
 import {
   idlFactory as FavoritesIDL,
-  _SERVICE as Favorites,
-} from "@icnaming/favorites_client";
+  _SERVICE as Favorites
+} from '@icnaming/favorites_client';
 import {
   idlFactory as RegistrarIDL,
-  _SERVICE as Registrar,
-} from "@icnaming/registrar_client";
+  _SERVICE as Registrar
+} from '@icnaming/registrar_client';
 import {
   idlFactory as RegistryIDL,
-  _SERVICE as Registry,
-} from "@icnaming/registry_client";
+  _SERVICE as Registry
+} from '@icnaming/registry_client';
 import {
   idlFactory as ResolverIDL,
-  _SERVICE as Resolver,
-} from "@icnaming/resolver_client";
+  _SERVICE as Resolver
+} from '@icnaming/resolver_client';
 
 export class IcNamingClientBase {
   protected options: IcNamingClientInitOptions;
 
-  protected favorites:Favorites;
-  protected registrar:Registrar;
-  protected registry:Registry;
-  protected resolver:Resolver;
+  protected favorites: Favorites;
+  protected registrar: Registrar;
+  protected registry: Registry;
+  protected resolver: Resolver;
 
   private _httpAgent: HttpAgent;
 
@@ -46,10 +46,10 @@ export class IcNamingClientBase {
     let canisterIdMapping: NetCanisterIdMapping;
 
     switch (options.suffix) {
-      case "ICP":
+      case 'ICP':
         canisterIdMapping = ICP_CANISTER_ID_GROUP;
         break;
-      case "IC":
+      case 'IC':
       default:
         canisterIdMapping = IC_CANISTER_ID_GROUP;
         break;
@@ -75,16 +75,16 @@ export class IcNamingClientBase {
 
   private _initHttpAgent() {
     return new HttpAgent({
-      host: this.options.mode === "local" ? IC_LOCAL_HOST : IC_PUBLIC_HOST,
-      ...this.options.httpAgentOptions,
+      host: this.options.mode === 'local' ? IC_LOCAL_HOST : IC_PUBLIC_HOST,
+      ...this.options.httpAgentOptions
     });
   }
 
   private _init_actors_before() {
-    if (this.options.mode === "local") {
-      this._httpAgent.fetchRootKey().catch((err) => {
+    if (this.options.mode === 'local') {
+      this._httpAgent.fetchRootKey().catch(err => {
         console.warn(
-          "Unable to fetch root key. Check to ensure that your local replica is running"
+          'Unable to fetch root key. Check to ensure that your local replica is running'
         );
         console.error(err);
         // TODO: maybe throw ?
@@ -94,11 +94,11 @@ export class IcNamingClientBase {
 
   private _createActor<ServiceType>(
     factory: IDL.InterfaceFactory,
-    canisterId: ActorConfig["canisterId"]
+    canisterId: ActorConfig['canisterId']
   ) {
     return Actor.createActor(factory, {
       agent: this._httpAgent,
-      canisterId,
+      canisterId
     }) as ActorSubclass<ServiceType>;
   }
 }

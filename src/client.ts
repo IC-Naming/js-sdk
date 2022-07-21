@@ -1,12 +1,12 @@
-import { Principal } from "@dfinity/principal";
+import { Principal } from '@dfinity/principal';
 // import { QuotaType } from "./canisters/registrar/registrar.did";
-import { IcNamingClientBase } from "./internal/base";
+import { IcNamingClientBase } from './internal/base';
 import {
   InMemoryNameRecordsCacheStore,
-  NameRecordsCacheStore,
-} from "./internal/cache";
-import { IcNamingClientInitOptions } from "./internal/option";
-import { throwable } from "./internal/utils";
+  NameRecordsCacheStore
+} from './internal/cache';
+import { IcNamingClientInitOptions } from './internal/option';
+import { throwable } from './internal/utils';
 
 export class IcNamingClient extends IcNamingClientBase {
   private enableTTL: boolean;
@@ -122,7 +122,7 @@ export class IcNamingClient extends IcNamingClientBase {
   async getRecordsOfName(name: string): Promise<Array<[string, string]>> {
     let cachedRecords: Array<[string, string]> | undefined;
 
-    await this.dispatchNameRecordsCache(async (store) => {
+    await this.dispatchNameRecordsCache(async store => {
       const target = await store.getRecordsByName(name);
 
       if (target) {
@@ -131,18 +131,18 @@ export class IcNamingClient extends IcNamingClientBase {
 
           await store.setRecordsByName(name, {
             name,
-            expired_at: new Date(Date.now() + Number(ttl) * 1000).getTime(),
+            expired_at: new Date(Date.now() + Number(ttl) * 1000).getTime()
           });
         } else {
           if (target.records) {
-            cachedRecords = target.records.map((i) => [i.key, i.value]);
+            cachedRecords = target.records.map(i => [i.key, i.value]);
           }
         }
       } else {
         const { ttl } = await this.getRegistryOfName(name);
         await store.setRecordsByName(name, {
           name,
-          expired_at: new Date(Date.now() + Number(ttl) * 1000).getTime(),
+          expired_at: new Date(Date.now() + Number(ttl) * 1000).getTime()
         });
       }
     });
@@ -151,26 +151,26 @@ export class IcNamingClient extends IcNamingClientBase {
 
     const result = await throwable(() => this.resolver.get_record_value(name));
 
-    await this.dispatchNameRecordsCache(async (store) => {
+    await this.dispatchNameRecordsCache(async store => {
       const target = await store.getRecordsByName(name);
 
       if (target) {
         await store.setRecordsByName(name, {
           ...target,
-          records: result.map(([key, value]) => ({ key, value })),
+          records: result.map(([key, value]) => ({ key, value }))
         });
       }
     });
 
     return result;
   }
-  
+
   async getReverseResolve(principal: Principal): Promise<string> {
     const [result] = await throwable(() =>
       this.resolver.reverse_resolve_principal(principal)
     );
 
-    return result || "";
+    return result || '';
   }
 
   // --- Favorites ---
