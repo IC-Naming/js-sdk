@@ -1,36 +1,27 @@
-name: Pipeline
-
+name: CI & CD
 on:
   push:
-    branches:
-      - main
-    tags-ignore:
-      - "**"
-  pull_request:
-    branches:
-      - main
-
+    tags:
+      - v*
 jobs:
-  echo:
-    strategy:
-      matrix:
-        node-version: [14, 16]
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+  Build-and-Publish:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        name: Checkout [main]
-        with:
-          fetch-depth: 0
-
       - uses: actions/setup-node@v3
-        name: Setup NodeJS
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "yarn"
-
-      - run: yarn install
-      - run: yarn type
-      - run: yarn test --coverage
-      - run: yarn build
-      - run: ls ./dist
+          node-version: 14
+          registry-url: https://registry.npmjs.org
+          cache: yarn
+      - name: Install Dependencies
+        run: yarn
+      - name: Build & Publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_SECRET }}
+      - name: Update document
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./docs
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          force_orphan: true
