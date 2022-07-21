@@ -1,5 +1,7 @@
 # IC-Naming JavaScript SDK
 
+[![CI & CD](https://github.com/IC-Naming/js-sdk/actions/workflows/pipeline.yml/badge.svg)][1]
+
 [![NPM](https://nodei.co/npm/@ic-naming/client.png?downloads=true&downloadRank=true&stars=true)][1]
 
 ## Installing
@@ -131,4 +133,5 @@ git tag vX.Y.Z HEAD  # Create a tag started with "v" to trigger CI/CD pipeline
 git push origin main --tags
 ```
 
-[1]: https://nodei.co/npm/@ic-naming/client/
+[1]: https://github.com/IC-Naming/js-sdk/actions/workflows/pipeline.yml
+[2]: https://nodei.co/npm/@ic-naming/client/
