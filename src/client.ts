@@ -164,6 +164,14 @@ export class IcNamingClient extends IcNamingClientBase {
 
     return result;
   }
+  
+  async getReverseResolve(principal: Principal): Promise<string> {
+    const [result] = await throwable(() =>
+      this.resolver.reverse_resolve_principal(principal)
+    );
+
+    return result || "";
+  }
 
   // --- Favorites ---
 

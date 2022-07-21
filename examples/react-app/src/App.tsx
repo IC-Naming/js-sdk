@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   const client = useMemo(() => {
     return new IcNamingClient({
-      net: "MAINNET",
+      net: "IC",
       mode: "production",
       enableTTL: true,
     });

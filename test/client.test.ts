@@ -12,10 +12,7 @@ const dummyPrincipal = Principal.fromText("crp26-tyaaa-aaaam-aacbq-cai");
 
 describe("IcNamingClient", () => {
   it("should naming available", async () => {
-    const client = new IcNamingClient({
-      net: "MAINNET",
-      mode: "local",
-    });
+    const client = new IcNamingClient({ suffix: "ICP", mode: "local" });
 
     client["registrar"] = { available: () => {} } as any;
 
@@ -28,10 +25,7 @@ describe("IcNamingClient", () => {
   });
 
   it("should return expired time", async () => {
-    const client = new IcNamingClient({
-      net: "MAINNET",
-      mode: "local",
-    });
+    const client = new IcNamingClient({ suffix: "ICP", mode: "local" });
 
     client["registrar"] = { get_name_expires: () => {} } as any;
 
@@ -46,10 +40,7 @@ describe("IcNamingClient", () => {
   });
 
   it("should return names of registrant", async () => {
-    const client = new IcNamingClient({
-      net: "MAINNET",
-      mode: "local",
-    });
+    const client = new IcNamingClient({ suffix: "ICP", mode: "local" });
 
     client["registrar"] = { get_names: () => {} } as any;
 
@@ -81,10 +72,7 @@ describe("IcNamingClient", () => {
   });
 
   it("should return names of controller", async () => {
-    const client = new IcNamingClient({
-      net: "MAINNET",
-      mode: "local",
-    });
+    const client = new IcNamingClient({ suffix: "ICP", mode: "local" });
 
     client["registry"] = { get_controlled_names: () => {} } as any;
 
@@ -104,10 +92,7 @@ describe("IcNamingClient", () => {
   });
 
   it("should return registrant of name", async () => {
-    const client = new IcNamingClient({
-      net: "MAINNET",
-      mode: "local",
-    });
+    const client = new IcNamingClient({ suffix: "ICP", mode: "local" });
 
     client["registrar"] = { get_owner: () => {} } as any;
 
@@ -122,10 +107,7 @@ describe("IcNamingClient", () => {
   });
 
   it("should return controller of name", async () => {
-    const client = new IcNamingClient({
-      net: "MAINNET",
-      mode: "local",
-    });
+    const client = new IcNamingClient({ suffix: "ICP", mode: "local" });
 
     client["registry"] = { get_owner: () => {} } as any;
 
@@ -140,10 +122,7 @@ describe("IcNamingClient", () => {
   });
 
   it("should return resolver of name", async () => {
-    const client = new IcNamingClient({
-      net: "MAINNET",
-      mode: "local",
-    });
+    const client = new IcNamingClient({ suffix: "ICP", mode: "local" });
 
     client["registry"] = { get_resolver: () => {} } as any;
 
@@ -158,10 +137,7 @@ describe("IcNamingClient", () => {
   });
 
   it("should return registration detail of name", async () => {
-    const client = new IcNamingClient({
-      net: "MAINNET",
-      mode: "local",
-    });
+    const client = new IcNamingClient({ suffix: "ICP", mode: "local" });
 
     client["registrar"] = { get_details: () => {} } as any;
 
@@ -184,10 +160,7 @@ describe("IcNamingClient", () => {
   });
 
   it("should return records of name", async () => {
-    const client = new IcNamingClient({
-      net: "MAINNET",
-      mode: "local",
-    });
+    const client = new IcNamingClient({ suffix: "ICP", mode: "local" });
 
     client["resolver"] = { get_record_value: () => {} } as any;
 
@@ -214,7 +187,7 @@ describe("IcNamingClient", () => {
     const spyStoreSet = jest.spyOn(inMemoryStore, "setRecordsByName");
 
     const client = new IcNamingClient({
-      net: "MAINNET",
+      suffix: "ICP",
       mode: "local",
       enableTTL: true,
       nameRecordsCacheStore: inMemoryStore,
@@ -278,7 +251,7 @@ describe("IcNamingClient", () => {
 
   it("should return registry of name", async () => {
     const client = new IcNamingClient({
-      net: "MAINNET",
+      suffix: "ICP",
       mode: "local",
     });
 
@@ -304,7 +277,7 @@ describe("IcNamingClient", () => {
 
   it("should return prices", async () => {
     const client = new IcNamingClient({
-      net: "MAINNET",
+      suffix: "ICP",
       mode: "local",
     });
 
@@ -335,7 +308,7 @@ describe("IcNamingClient", () => {
 
   it("should return favorites", async () => {
     const client = new IcNamingClient({
-      net: "MAINNET",
+      suffix: "ICP",
       mode: "local",
     });
 
@@ -354,7 +327,7 @@ describe("IcNamingClient", () => {
 
   it("should not enableTTL by default", () => {
     const client = new IcNamingClient({
-      net: "MAINNET",
+      suffix: "ICP",
       mode: "local",
     });
 
@@ -363,7 +336,7 @@ describe("IcNamingClient", () => {
 
   it("should not enableTTL by default", () => {
     const client = new IcNamingClient({
-      net: "MAINNET",
+      suffix: "ICP",
       mode: "local",
       enableTTL: true,
     });
