@@ -420,10 +420,10 @@
   resolved "https://gitlab.com/api/v4/projects/37663483/packages/npm/@icnaming/favorites_client/-/@icnaming/favorites_client-0.0.22.tgz#887fc538b68c6cbd5540934a2b986c2e9f2aed4d"
   integrity sha1-iH/FOLaMbL1VQJNKK5hsLp8q7U0=
 
-"@icnaming/registrar_client@0.0.22":
-  version "0.0.22"
-  resolved "https://gitlab.com/api/v4/projects/37663483/packages/npm/@icnaming/registrar_client/-/@icnaming/registrar_client-0.0.22.tgz#55fd6f5cfdec78778880c52212e2b76dc66fcc2d"
-  integrity sha1-Vf1vXP3seHeIgMUiEuK3bcZvzC0=
+"@icnaming/registrar_client@2.0.1":
+  version "2.0.1"
+  resolved "https://gitlab.com/api/v4/projects/37663483/packages/npm/@icnaming/registrar_client/-/@icnaming/registrar_client-2.0.1.tgz#2afbecfd7ef1f7540402116acceab56d49b4b6d7"
+  integrity sha1-Kvvs/X7x91QEAhFqzOq1bUm0ttc=
 
 "@icnaming/registry_client@0.0.22":
   version "0.0.22"
