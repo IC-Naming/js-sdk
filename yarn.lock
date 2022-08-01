@@ -425,10 +425,10 @@
   resolved "https://gitlab.com/api/v4/projects/37663483/packages/npm/@icnaming/registrar_client/-/@icnaming/registrar_client-0.0.22.tgz#55fd6f5cfdec78778880c52212e2b76dc66fcc2d"
   integrity sha1-Vf1vXP3seHeIgMUiEuK3bcZvzC0=
 
-"@icnaming/registry_client@0.0.22":
-  version "0.0.22"
-  resolved "https://gitlab.com/api/v4/projects/37663483/packages/npm/@icnaming/registry_client/-/@icnaming/registry_client-0.0.22.tgz#a3a1e74837a4c8aa832ff343ca75f0bd6bf4d2ce"
-  integrity sha1-o6HnSDekyKqDL/NDynXwvWv00s4=
+"@icnaming/registry_client@2.0.1":
+  version "2.0.1"
+  resolved "https://gitlab.com/api/v4/projects/37663483/packages/npm/@icnaming/registry_client/-/@icnaming/registry_client-2.0.1.tgz#61ceb4d5d3565964b3cc14b5e14c54c20811445f"
+  integrity sha1-Yc601dNWWWSzzBS14UxUwggRRF8=
 
 "@icnaming/resolver_client@0.0.22":
   version "0.0.22"
