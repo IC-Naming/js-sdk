@@ -56,19 +56,19 @@ export class IcNamingClientBase {
     }
 
     this.favorites = this._createActor<Favorites>(
-      toDidModuleType(FavoritesIDL).idlFactory,
+      FavoritesIDL,
       canisterIdMapping.favorites
     );
     this.registrar = this._createActor<Registrar>(
-      toDidModuleType(RegistrarIDL).idlFactory,
+      RegistrarIDL,
       canisterIdMapping.registrar
     );
     this.registry = this._createActor<Registry>(
-      toDidModuleType(RegistryIDL).idlFactory,
+      RegistryIDL,
       canisterIdMapping.registry
     );
     this.resolver = this._createActor<Resolver>(
-      toDidModuleType(ResolverIDL).idlFactory,
+      ResolverIDL,
       canisterIdMapping.resolver
     );
   }
@@ -102,7 +102,3 @@ export class IcNamingClientBase {
     }) as ActorSubclass<ServiceType>;
   }
 }
-
-const toDidModuleType = <T>(module: T) => {
-  return module as T & { idlFactory: IDL.InterfaceFactory };
-};
