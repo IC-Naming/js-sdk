@@ -34,7 +34,7 @@ import { Principal } from '@dfinity/principal';
 import { IcNamingClient } from '@icnaming/client';
 
 const client = new IcNamingClient({
-  net: 'IC', // IC | ICP | TICP
+  suffix: 'IC', // IC | ICP | TICP
   mode: 'production' // local | production
 });
 
