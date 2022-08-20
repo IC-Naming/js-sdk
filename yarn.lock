@@ -415,25 +415,25 @@
   resolved "https://registry.yarnpkg.com/@hutson/parse-repository-url/-/parse-repository-url-3.0.2.tgz#98c23c950a3d9b6c8f0daed06da6c3af06981340"
   integrity sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==
 
-"@icnaming/favorites_client@0.0.22":
-  version "0.0.22"
-  resolved "https://gitlab.com/api/v4/projects/37663483/packages/npm/@icnaming/favorites_client/-/@icnaming/favorites_client-0.0.22.tgz#887fc538b68c6cbd5540934a2b986c2e9f2aed4d"
-  integrity sha1-iH/FOLaMbL1VQJNKK5hsLp8q7U0=
+"@icnaming/favorites_client@^2.0.0":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@icnaming/favorites_client/-/favorites_client-2.0.1.tgz#6ba8372a6cff427e542818e5094fd1052ded56c6"
+  integrity sha512-rhCgZVrhc6IjKHOQPJAQdXA2Ylr66BdZ9UU5QJg+I9Fx+Vlzu1fUrgA8pBhL0aNtB9MR0q194nVieLesY3LXFA==
 
-"@icnaming/registrar_client@0.0.22":
-  version "0.0.22"
-  resolved "https://gitlab.com/api/v4/projects/37663483/packages/npm/@icnaming/registrar_client/-/@icnaming/registrar_client-0.0.22.tgz#55fd6f5cfdec78778880c52212e2b76dc66fcc2d"
-  integrity sha1-Vf1vXP3seHeIgMUiEuK3bcZvzC0=
+"@icnaming/registrar_client@^2.0.0":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@icnaming/registrar_client/-/registrar_client-2.0.1.tgz#425caa68e9ad0c7f73c27035772f8a87ee0d3118"
+  integrity sha512-olyncY9YBi6xtBl9+JX97bS2XnojiFA30NE1epxAHNiGImRiJfbdtHte7pzAAjb6jodTkZdBsIinW3w0GH5rJQ==
 
-"@icnaming/registry_client@0.0.22":
-  version "0.0.22"
-  resolved "https://gitlab.com/api/v4/projects/37663483/packages/npm/@icnaming/registry_client/-/@icnaming/registry_client-0.0.22.tgz#a3a1e74837a4c8aa832ff343ca75f0bd6bf4d2ce"
-  integrity sha1-o6HnSDekyKqDL/NDynXwvWv00s4=
+"@icnaming/registry_client@^2.0.0":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@icnaming/registry_client/-/registry_client-2.0.1.tgz#73ff1693ae012d15254b1b88277210330e0198b5"
+  integrity sha512-NAHhgnUg+wlQy6E2RIAuVtSMDkmCok9k5Qf3A05vUJs9yMGfxlUnJVpueES3e+Tc4IqDExYPnU0DFOwdJLfMMQ==
 
-"@icnaming/resolver_client@0.0.22":
-  version "0.0.22"
-  resolved "https://gitlab.com/api/v4/projects/37663483/packages/npm/@icnaming/resolver_client/-/@icnaming/resolver_client-0.0.22.tgz#16b1291443c3e01122f7ad25cfaccaebf905a4d2"
-  integrity sha1-FrEpFEPD4BEi960lz6zK6/kFpNI=
+"@icnaming/resolver_client@^2.0.0":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@icnaming/resolver_client/-/resolver_client-2.0.1.tgz#b416464082b3faf43e2ad6851d6f024ee1e60830"
+  integrity sha512-iDRhtnTV5SbWCUtkXJ2QLhS0WtNHHpYn6xiCcqNDIDwAiR+U7x8zMbQJmxo3fys/O2hKJbyHJCAZ0M0w5uiY5A==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"

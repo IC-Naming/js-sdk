@@ -1,6 +1,6 @@
 {
-  "name": "@ic-naming/client",
-  "version": "0.4.2",
+  "name": "@icnaming/client",
+  "version": "2.0.1",
   "license": "Apache-2.0",
   "keywords": [
     "ic",
@@ -29,10 +29,10 @@
     "@dfinity/agent": ">=0.11.0",
     "@dfinity/candid": ">=0.11.0",
     "@dfinity/principal": ">=0.11.0",
-    "@icnaming/favorites_client": "0.0.22",
-    "@icnaming/registrar_client": "0.0.22",
-    "@icnaming/registry_client": "0.0.22",
-    "@icnaming/resolver_client": "0.0.22"
+    "@icnaming/favorites_client": "^2.0.0",
+    "@icnaming/registrar_client": "^2.0.0",
+    "@icnaming/registry_client": "^2.0.0",
+    "@icnaming/resolver_client": "^2.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "21.1.0",

@@ -2,7 +2,7 @@
 
 [![CI & CD](https://github.com/IC-Naming/js-sdk/actions/workflows/pipeline.yml/badge.svg)][1]
 
-[![NPM](https://nodei.co/npm/@ic-naming/client.png?downloads=true&downloadRank=true&stars=true)][2]
+[![NPM](https://nodei.co/npm/@icnaming/client.png?downloads=true&downloadRank=true&stars=true)][2]
 
 ## Installing
 
@@ -10,28 +10,28 @@ Using npm:
 
 ```sh
 npm install @dfinity/{agent,candid,principal} # dfinity dependencies
-npm install @ic-naming/client
+npm install @icnaming/client
 ```
 
 Using yarn:
 
 ```sh
 yarn add @dfinity/{agent,candid,principal} # dfinity dependencies
-yarn add @ic-naming/client
+yarn add @icnaming/client
 ```
 
 <!--
 Using unpkg CDN. Access through `(window or global).IcNaming.Client`:
 
 ```html
-<script src="https://unpkg.com/browse/@ic-naming/client/dist/index-umd.js"></script>
+<script src="https://unpkg.com/browse/@icnaming/client/dist/index-umd.js"></script>
 ``` -->
 
 ## Example
 
 ```js
 import { Principal } from '@dfinity/principal';
-import { IcNamingClient } from '@ic-naming/client';
+import { IcNamingClient } from '@icnaming/client';
 
 const client = new IcNamingClient({
   net: 'IC', // IC | ICP | TICP
@@ -82,7 +82,7 @@ client.getReverseResolve(thePrincipal).then(name => {
 Special host and identity:
 
 ```js
-import { IcNamingClient } from '@ic-naming/client';
+import { IcNamingClient } from '@icnaming/client';
 
 const client = new IcNamingClient({
   net: 'IC',
@@ -111,7 +111,7 @@ const client = new IcNamingClient({
 
 [client.ts](./src/client.ts)
 
-https://IC-Naming.github.io/js-sdk/
+https://INaming.github.io/js-sdk/
 
 ## Contribute
 
@@ -134,4 +134,4 @@ git push origin main --tags
 ```
 
 [1]: https://github.com/IC-Naming/js-sdk/actions/workflows/pipeline.yml
-[2]: https://nodei.co/npm/@ic-naming/client/
+[2]: https://nodei.co/npm/@icnaming/client/
