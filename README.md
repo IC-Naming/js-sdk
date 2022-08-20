@@ -111,7 +111,7 @@ const client = new IcNamingClient({
 
 [client.ts](./src/client.ts)
 
-https://INaming.github.io/js-sdk/
+https://ic-naming.github.io/js-sdk/
 
 ## Contribute
 
