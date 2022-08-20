@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { IcNamingClient } from '@ic-naming/client';
+import { IcNamingClient } from '@icnaming/client';
 import logo from './logo.png';
 import './App.css';
 
