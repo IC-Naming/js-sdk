@@ -16,7 +16,7 @@ jobs:
       - name: Install Dependencies
         run: yarn
       - name: Build & Publish
-        run: npm publish
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_SECRET }}
       - name: Update document
