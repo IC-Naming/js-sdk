@@ -85,7 +85,7 @@ Special host and identity:
 import { IcNamingClient } from '@icnaming/client';
 
 const client = new IcNamingClient({
-  net: 'IC',
+  suffix: 'IC',
   mode: 'production', // local | production
   httpAgent: {
     host: 'https://ic0.app', // default by mode
